@@ -2103,129 +2103,215 @@ textarea.form-control {
   }
 
   .hero-actions {
-    gap: 12px;
+    gap: 8px;
   }
 
   .hero-actions .btn {
-    padding: 14px 24px;
-    font-size: 14px;
-    min-height: 48px;
+    padding: 10px 18px;
+    font-size: 12px;
+    min-height: 40px;
   }
 
   /* ─── Section Headers ─── */
+  .section-header {
+    margin-bottom: 30px;
+  }
+
   .section-header h2 {
-    font-size: 28px;
+    font-size: 22px;
   }
 
   .section-header p {
-    font-size: 14px;
+    font-size: 12px;
+    line-height: 1.5;
   }
 
   section {
-    padding: 60px 0;
+    padding: 40px 0;
   }
 
   .section-padding {
-    padding: 60px 0;
+    padding: 40px 0;
   }
 
   /* ─── Logo Ticker ─── */
   .logo-ticker {
-    padding: 16px 0;
+    padding: 12px 0;
   }
 
   .logo-ticker-inner {
-    gap: 40px;
-    animation-duration: 20s;
+    gap: 30px;
+    animation-duration: 18s;
   }
 
   .logo-ticker-inner span {
-    font-size: 14px;
-    letter-spacing: 1.5px;
+    font-size: 11px;
+    letter-spacing: 1px;
   }
 
   .logo-ticker::before,
   .logo-ticker::after {
-    width: 40px;
+    width: 30px;
   }
 
   /* ─── Cards & Grids ─── */
   .features-grid, .courses-grid, .testimonials-grid, .pricing-grid, .contact-grid, .contact-value-props, .experts-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 12px;
   }
 
   .feature-card, .course-card, .testimonial-card, .pricing-card {
-    padding: 24px 20px;
+    padding: 16px 14px;
+  }
+
+  .feature-card h3, .course-card h3 {
+    font-size: 16px;
+  }
+
+  .feature-card p, .course-card p {
+    font-size: 12px;
+    line-height: 1.5;
   }
 
   .course-card .course-img {
-    height: 180px;
+    height: 140px;
+  }
+
+  .course-card .course-img img {
+    object-fit: cover;
+  }
+
+  /* ─── Testimonial Cards ─── */
+  .testimonial-card p {
+    font-size: 12px;
+  }
+
+  .testimonial-card .author {
+    font-size: 13px;
+  }
+
+  /* ─── Pricing Cards ─── */
+  .pricing-card .price {
+    font-size: 32px;
+  }
+
+  .pricing-card .plan-name {
+    font-size: 16px;
+  }
+
+  .pricing-card li {
+    font-size: 12px;
   }
   
   .about-stats {
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 10px;
   }
 
   .about-stats .stat-card {
-    padding: 20px 16px;
+    padding: 14px 12px;
   }
 
-  /* ─── Buttons — Touch friendly (min 44px tap target) ─── */
+  .about-stats .stat-card h3 {
+    font-size: 24px;
+  }
+
+  .about-stats .stat-card p {
+    font-size: 11px;
+  }
+
+  /* ─── Buttons ─── */
   .btn {
-    min-height: 44px;
-    padding: 12px 24px;
-    font-size: 14px;
+    min-height: 40px;
+    padding: 10px 20px;
+    font-size: 13px;
   }
 
   .btn-sm {
-    min-height: 40px;
-    padding: 10px 16px;
+    min-height: 36px;
+    padding: 8px 14px;
+    font-size: 12px;
   }
 
   /* ─── CTA Banner ─── */
   .cta-banner {
-    padding: 48px 20px;
+    padding: 32px 16px;
     text-align: center;
   }
 
   .cta-banner h2 {
-    font-size: 28px;
+    font-size: 22px;
   }
 
   .cta-banner p {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   /* ─── Showcase ─── */
   .showcase-image {
-    height: 240px;
+    height: 180px;
   }
 
   .showcase-step-card {
-    padding: 20px;
-    gap: 16px;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .showcase-step-card h3 {
+    font-size: 16px;
+  }
+
+  .showcase-step-card p {
+    font-size: 12px;
+  }
+
+  /* ─── Experts ─── */
+  .expert-card img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .expert-card h4 {
+    font-size: 14px;
+  }
+
+  .expert-card p {
+    font-size: 11px;
   }
 
   /* ─── Contact ─── */
   .contact-showcase {
-    min-height: 200px;
-    padding: 24px;
+    min-height: 160px;
+    padding: 20px;
   }
 
   .contact-form-wrapper {
-    padding: 24px;
+    padding: 20px;
+  }
+
+  .contact-form-wrapper h3 {
+    font-size: 18px;
+  }
+
+  .contact-form-wrapper input,
+  .contact-form-wrapper textarea,
+  .contact-form-wrapper select {
+    font-size: 13px;
+    padding: 10px 12px;
   }
   
   .form-group-row {
     grid-template-columns: 1fr;
   }
 
+  .form-group label {
+    font-size: 12px;
+  }
+
   /* ─── Footer ─── */
   .footer-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 24px;
     text-align: center;
   }
 
@@ -2239,23 +2325,53 @@ textarea.form-control {
 
   .footer-bottom {
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     text-align: center;
+    font-size: 11px;
+  }
+
+  footer h4 {
+    font-size: 14px;
+  }
+
+  footer p, footer a, footer li {
+    font-size: 12px;
+  }
+
+  footer {
+    padding: 30px 0 16px;
   }
 
   /* ─── Badge ─── */
   .badge {
-    font-size: 10px;
-    padding: 5px 12px;
+    font-size: 9px;
+    padding: 4px 10px;
   }
 
   /* ─── Breadcrumbs ─── */
   .breadcrumbs {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   /* ─── Page hero subtitle ─── */
   .page-subtitle {
+    font-size: 13px;
+  }
+
+  /* ─── General text ─── */
+  p {
+    font-size: 13px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  h4 {
     font-size: 15px;
   }
 }
