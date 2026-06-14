@@ -1909,20 +1909,33 @@ textarea.form-control {
     backdrop-filter: blur(20px);
     flex-direction: column;
     padding: 32px 24px;
-    gap: 24px;
+    gap: 0;
     z-index: 999;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    list-style: none;
   }
   
   .nav-links.active {
     display: flex;
   }
 
+  .nav-links li {
+    display: block;
+    width: 100%;
+  }
+
   .nav-links a {
     font-size: 18px;
-    padding: 12px 0;
+    padding: 16px 0;
     border-bottom: 1px solid var(--border-color);
+    display: block;
+    width: 100%;
+    color: var(--text-primary);
+  }
+
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--color-primary);
   }
   
   .nav-actions {
