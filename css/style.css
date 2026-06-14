@@ -1992,11 +1992,16 @@ textarea.form-control {
     width: 100%;
   }
 
-  /* Title + Avatar side by side on mobile */
+  /* Avatar on top, title below on mobile */
   .hero-top-row {
-    flex-direction: row;
-    gap: 10px;
+    flex-direction: column;
+    gap: 12px;
     align-items: center;
+    text-align: center;
+  }
+
+  .hero-graphic {
+    order: -1;
   }
 
   .hero-content {
