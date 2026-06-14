@@ -1827,13 +1827,15 @@ textarea.form-control {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-lg);
-  max-width: 500px;
-  width: 90%;
-  padding: 40px;
+  max-width: 900px;
+  width: 94%;
+  padding: 0;
   position: relative;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), var(--border-glow);
   transform: translateY(20px);
   transition: transform 0.3s ease;
+  max-height: 92vh;
+  overflow-y: auto;
 }
 
 .modal-overlay.active .modal-content {
@@ -1842,18 +1844,27 @@ textarea.form-control {
 
 .modal-close {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 24px;
+  top: 16px;
+  right: 16px;
+  font-size: 22px;
   color: var(--text-secondary);
-  background: none;
-  border: none;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: var(--transition-smooth);
+  z-index: 10;
 }
 
 .modal-close:hover {
   color: var(--color-primary);
+  background: rgba(241, 168, 10, 0.1);
+  border-color: var(--color-primary);
 }
 
 .modal-header {
@@ -1873,6 +1884,260 @@ textarea.form-control {
 .modal-header p {
   color: var(--text-secondary);
   font-size: 14px;
+}
+
+/* ─── Enhanced Enrollment Modal ─── */
+.enroll-modal-enhanced {
+  padding: 0 !important;
+}
+
+.enroll-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+}
+
+/* Left Panel: Course Details */
+.enroll-course-info {
+  background: linear-gradient(160deg, rgba(241, 168, 10, 0.06) 0%, rgba(10, 11, 13, 0.95) 70%);
+  padding: 40px 32px;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg);
+}
+
+.enroll-course-badge {
+  font-size: 40px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(241, 168, 10, 0.1);
+  border: 1px solid rgba(241, 168, 10, 0.2);
+  border-radius: 16px;
+}
+
+.enroll-course-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.enroll-meta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.enroll-meta-item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px 12px;
+  flex: 1;
+  min-width: 70px;
+  text-align: center;
+}
+
+.enroll-meta-label {
+  display: block;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
+
+.enroll-meta-value {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.enroll-course-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.enroll-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.enroll-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.enroll-check {
+  color: var(--color-success);
+  font-weight: 700;
+  font-size: 14px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(52, 199, 89, 0.1);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.enroll-price-box {
+  background: linear-gradient(135deg, rgba(241, 168, 10, 0.12), rgba(241, 168, 10, 0.04));
+  border: 1px solid rgba(241, 168, 10, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.enroll-price-label {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.enroll-price-value {
+  display: block;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--color-primary);
+  font-family: 'Outfit', sans-serif;
+}
+
+.enroll-rating {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.enroll-guarantee {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  background: rgba(52, 199, 89, 0.05);
+  border: 1px solid rgba(52, 199, 89, 0.15);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+/* Right Panel: Enrollment Form */
+.enroll-form-panel {
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.enroll-form-header h4 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--text-primary);
+}
+
+.enroll-form-header p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.form-row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.enroll-agreement {
+  margin: 8px 0 16px;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+  accent-color: var(--color-primary);
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.checkbox-text {
+  line-height: 1.4;
+}
+
+.enroll-submit-btn {
+  width: 100%;
+  font-size: 16px;
+  padding: 14px 24px;
+  font-weight: 700;
+}
+
+.enroll-trust-badges {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.enroll-trust-badges span {
+  font-size: 10px;
+  color: var(--text-secondary);
+  letter-spacing: 0.3px;
+}
+
+/* Responsive: Stack columns on mobile */
+@media (max-width: 768px) {
+  .enroll-modal-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .enroll-course-info {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+    padding: 28px 24px;
+  }
+  
+  .enroll-form-panel {
+    padding: 24px;
+  }
+  
+  .form-row-2col {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    max-width: 95%;
+    max-height: 90vh;
+  }
+  
+  .enroll-trust-badges {
+    gap: 10px;
+  }
 }
 
 /* Newsletter Inline Success Tooltip */
