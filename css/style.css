@@ -1901,41 +1901,69 @@ textarea.form-control {
   .nav-links {
     display: none;
     position: fixed;
-    top: 64px;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(7, 8, 10, 0.97);
-    backdrop-filter: blur(20px);
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     flex-direction: column;
-    padding: 32px 24px;
+    align-items: center;
+    justify-content: center;
     gap: 0;
-    z-index: 999;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    z-index: 9999;
     list-style: none;
+    padding: 0;
   }
   
   .nav-links.active {
     display: flex;
+    animation: menuFadeIn 0.25s ease-out;
+  }
+
+  @keyframes menuFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
   .nav-links li {
     display: block;
-    width: 100%;
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
   }
 
   .nav-links a {
-    font-size: 18px;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--border-color);
+    font-size: 20px;
+    font-weight: 600;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     display: block;
     width: 100%;
     color: var(--text-primary);
+    letter-spacing: 0.5px;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links li:last-child a {
+    border-bottom: none;
   }
 
   .nav-links a:hover, .nav-links a.active {
     color: var(--color-primary);
+  }
+
+  /* Close button styles */
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    font-size: 22px;
+    z-index: 10000;
+    position: relative;
   }
   
   .nav-actions {
@@ -1949,15 +1977,6 @@ textarea.form-control {
   
   .crypto-ticker {
     display: none;
-  }
-  
-  .mobile-menu-btn {
-    display: block;
-    min-width: 44px;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   /* ─── Hero Section — Viewport Fit ─── */
