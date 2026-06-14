@@ -396,15 +396,17 @@ header .container {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 420px;
 }
 
 .hero-avatar-wrapper {
   position: relative;
-  width: 380px;
-  height: 380px;
+  width: 340px;
+  height: 340px;
   border-radius: 50%;
   padding: 15px;
   background: radial-gradient(circle, rgba(241, 168, 10, 0.2) 0%, rgba(241, 168, 10, 0) 70%);
+  z-index: 1;
 }
 
 .hero-avatar-wrapper::after {
@@ -429,19 +431,20 @@ header .container {
 
 .hero-stat-card {
   position: absolute;
-  background-color: rgba(16, 17, 20, 0.85);
-  backdrop-filter: blur(10px);
+  background-color: rgba(16, 17, 20, 0.9);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-md);
   padding: 16px 20px;
   display: flex;
   flex-direction: column;
   gap: 4px;
+  z-index: 2;
 }
 
 .hero-stat-card.top-card {
-  top: 40px;
-  right: -20px;
+  top: 10px;
+  right: -30px;
   box-shadow: var(--border-glow);
 }
 
@@ -452,8 +455,8 @@ header .container {
 }
 
 .hero-stat-card.bottom-card {
-  bottom: 30px;
-  left: -20px;
+  bottom: 20px;
+  left: -30px;
   flex-direction: row;
   align-items: center;
   gap: 16px;
@@ -1699,6 +1702,24 @@ textarea.form-control {
   
   .hero-graphic {
     order: -1;
+    min-height: 380px;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-content p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-checklist {
+    align-items: center;
   }
   
   .showcase-image {
@@ -1712,6 +1733,14 @@ textarea.form-control {
   
   .contact-form-wrapper {
     padding: 40px;
+  }
+
+  .hero-stat-card.top-card {
+    right: 5%;
+  }
+
+  .hero-stat-card.bottom-card {
+    left: 5%;
   }
 }
 
@@ -1751,7 +1780,11 @@ textarea.form-control {
   }
   
   .hero-content h1 {
-    font-size: 44px;
+    font-size: 40px;
+  }
+
+  .hero-title-stacked {
+    font-size: 48px !important;
   }
   
   .features-grid, .courses-grid, .testimonials-grid, .pricing-grid, .contact-grid, .contact-value-props, .experts-grid {
@@ -1775,20 +1808,42 @@ textarea.form-control {
   .cta-banner h2 {
     font-size: 32px;
   }
+
+  .hero-graphic {
+    min-height: 340px;
+  }
+
+  .hero-avatar-wrapper {
+    width: 260px;
+    height: 260px;
+  }
+
+  .hero-stat-card.top-card {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: -30px auto 0;
+    width: fit-content;
+    z-index: 3;
+  }
+
+  .hero-stat-card.bottom-card {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin: 12px auto 0;
+    width: fit-content;
+  }
+
+  .hero-graphic {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 480px) {
   .hero-avatar-wrapper {
-    width: 280px;
-    height: 280px;
-  }
-  
-  .hero-stat-card.top-card {
-    right: 0;
-  }
-  
-  .hero-stat-card.bottom-card {
-    left: 0;
+    width: 220px;
+    height: 220px;
   }
   
   .about-stats {
@@ -1797,6 +1852,19 @@ textarea.form-control {
   
   .hero-actions {
     flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-content h1 {
+    font-size: 32px;
+  }
+
+  .hero-title-stacked {
+    font-size: 36px !important;
+  }
+
+  section {
+    padding: 60px 0;
   }
 }
 
@@ -1827,19 +1895,33 @@ textarea.form-control {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-lg);
-  max-width: 900px;
+  max-width: 920px;
   width: 94%;
   padding: 0;
   position: relative;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), var(--border-glow);
-  transform: translateY(20px);
-  transition: transform 0.3s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(241, 168, 10, 0.08);
+  transform: translateY(20px) scale(0.98);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
   max-height: 92vh;
   overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: rgba(241, 168, 10, 0.3);
+  border-radius: 3px;
 }
 
 .modal-overlay.active .modal-content {
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 .modal-close {
@@ -1889,23 +1971,37 @@ textarea.form-control {
 /* ─── Enhanced Enrollment Modal ─── */
 .enroll-modal-enhanced {
   padding: 0 !important;
+  border-top: 3px solid var(--color-primary);
 }
 
 .enroll-modal-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 500px;
+  grid-template-columns: 42% 58%;
+  min-height: 520px;
 }
 
 /* Left Panel: Course Details */
 .enroll-course-info {
-  background: linear-gradient(160deg, rgba(241, 168, 10, 0.06) 0%, rgba(10, 11, 13, 0.95) 70%);
-  padding: 40px 32px;
+  background: linear-gradient(170deg, rgba(241, 168, 10, 0.08) 0%, rgba(10, 11, 13, 0.98) 60%);
+  padding: 36px 28px;
   border-right: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.enroll-course-info::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 80% 20%, rgba(241, 168, 10, 0.04) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 .enroll-course-badge {
