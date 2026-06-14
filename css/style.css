@@ -485,7 +485,7 @@ header .container {
   to { transform: rotate(360deg); }
 }
 
-/* Partner Logo Ticker */
+/* Partner Logo Ticker — Infinite Scrolling Marquee */
 .logo-ticker {
   background-color: rgba(16, 17, 20, 0.4);
   border-top: 1px solid var(--border-color);
@@ -495,12 +495,42 @@ header .container {
   position: relative;
 }
 
+/* Edge fade masks */
+.logo-ticker::before,
+.logo-ticker::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.logo-ticker::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-primary), transparent);
+}
+
+.logo-ticker::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-primary), transparent);
+}
+
+.logo-ticker-track {
+  overflow: hidden;
+}
+
 .logo-ticker-inner {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 40px;
+  gap: 60px;
+  width: max-content;
+  animation: ticker-scroll 30s linear infinite;
+}
+
+.logo-ticker:hover .logo-ticker-inner {
+  animation-play-state: paused;
 }
 
 .logo-ticker-inner span {
@@ -508,7 +538,24 @@ header .container {
   font-size: 18px;
   font-weight: 600;
   color: var(--text-muted);
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.logo-ticker-inner span:hover {
+  color: var(--color-primary);
+  text-shadow: 0 0 12px rgba(241, 168, 10, 0.4);
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* Feature/Pill Tiers Section */
@@ -1745,26 +1792,59 @@ textarea.form-control {
 }
 
 @media (max-width: 768px) {
+  /* ─── iOS / Android safe area & touch ─── */
+  body {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  /* Navigation */
+  header .container {
+    height: 64px;
+  }
+
+  .logo img {
+    height: 28px;
+  }
+
   .nav-links {
     display: none;
-    position: absolute;
-    top: 80px;
+    position: fixed;
+    top: 64px;
     left: 0;
-    width: 100%;
-    background-color: var(--bg-surface);
-    border-bottom: 1px solid var(--border-color);
+    right: 0;
+    bottom: 0;
+    background-color: rgba(7, 8, 10, 0.97);
+    backdrop-filter: blur(20px);
     flex-direction: column;
-    padding: 24px;
-    gap: 20px;
+    padding: 32px 24px;
+    gap: 24px;
     z-index: 999;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   
   .nav-links.active {
     display: flex;
   }
+
+  .nav-links a {
+    font-size: 18px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+  }
   
   .nav-actions {
-    gap: 12px;
+    gap: 10px;
+  }
+
+  .nav-actions .btn {
+    padding: 10px 18px;
+    font-size: 13px;
   }
   
   .crypto-ticker {
@@ -1773,57 +1853,63 @@ textarea.form-control {
   
   .mobile-menu-btn {
     display: block;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ─── Hero Section ─── */
+  .hero {
+    padding: 80px 0 50px;
+  }
+
+  .page-hero {
+    padding: 80px 0 40px;
   }
   
   .page-title {
-    font-size: 40px;
+    font-size: 32px;
   }
   
   .hero-content h1 {
-    font-size: 40px;
+    font-size: 36px;
+    margin-bottom: 16px;
+  }
+
+  .hero-content p {
+    font-size: 15px;
+    margin-bottom: 28px;
   }
 
   .hero-title-stacked {
-    font-size: 48px !important;
+    font-size: 42px !important;
+    letter-spacing: -1px;
   }
-  
-  .features-grid, .courses-grid, .testimonials-grid, .pricing-grid, .contact-grid, .contact-value-props, .experts-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .about-stats {
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
-  
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  
-  .form-group-row {
-    grid-template-columns: 1fr;
-  }
-  
-  .cta-banner h2 {
-    font-size: 32px;
+
+  .hero-checklist li {
+    font-size: 13px;
   }
 
   .hero-graphic {
-    min-height: 340px;
+    min-height: auto;
+    flex-direction: column;
+    gap: 0;
   }
 
   .hero-avatar-wrapper {
-    width: 260px;
-    height: 260px;
+    width: 240px;
+    height: 240px;
   }
 
   .hero-stat-card.top-card {
     position: relative;
     top: auto;
     right: auto;
-    margin: -30px auto 0;
-    width: fit-content;
+    margin: -20px auto 0;
+    width: 90%;
+    max-width: 320px;
     z-index: 3;
   }
 
@@ -1831,19 +1917,191 @@ textarea.form-control {
     position: relative;
     bottom: auto;
     left: auto;
-    margin: 12px auto 0;
-    width: fit-content;
+    margin: 10px auto 0;
+    width: 90%;
+    max-width: 320px;
   }
 
-  .hero-graphic {
+  .hero-actions {
+    gap: 12px;
+  }
+
+  .hero-actions .btn {
+    padding: 14px 24px;
+    font-size: 14px;
+    min-height: 48px;
+  }
+
+  /* ─── Section Headers ─── */
+  .section-header h2 {
+    font-size: 28px;
+  }
+
+  .section-header p {
+    font-size: 14px;
+  }
+
+  section {
+    padding: 60px 0;
+  }
+
+  .section-padding {
+    padding: 60px 0;
+  }
+
+  /* ─── Logo Ticker ─── */
+  .logo-ticker {
+    padding: 16px 0;
+  }
+
+  .logo-ticker-inner {
+    gap: 40px;
+    animation-duration: 20s;
+  }
+
+  .logo-ticker-inner span {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+  }
+
+  .logo-ticker::before,
+  .logo-ticker::after {
+    width: 40px;
+  }
+
+  /* ─── Cards & Grids ─── */
+  .features-grid, .courses-grid, .testimonials-grid, .pricing-grid, .contact-grid, .contact-value-props, .experts-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .feature-card, .course-card, .testimonial-card, .pricing-card {
+    padding: 24px 20px;
+  }
+
+  .course-card .course-img {
+    height: 180px;
+  }
+  
+  .about-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .about-stats .stat-card {
+    padding: 20px 16px;
+  }
+
+  /* ─── Buttons — Touch friendly (min 44px tap target) ─── */
+  .btn {
+    min-height: 44px;
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  .btn-sm {
+    min-height: 40px;
+    padding: 10px 16px;
+  }
+
+  /* ─── CTA Banner ─── */
+  .cta-banner {
+    padding: 48px 20px;
+    text-align: center;
+  }
+
+  .cta-banner h2 {
+    font-size: 28px;
+  }
+
+  .cta-banner p {
+    font-size: 14px;
+  }
+
+  /* ─── Showcase ─── */
+  .showcase-image {
+    height: 240px;
+  }
+
+  .showcase-step-card {
+    padding: 20px;
+    gap: 16px;
+  }
+
+  /* ─── Contact ─── */
+  .contact-showcase {
+    min-height: 200px;
+    padding: 24px;
+  }
+
+  .contact-form-wrapper {
+    padding: 24px;
+  }
+  
+  .form-group-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* ─── Footer ─── */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .footer-links {
+    justify-content: center;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+
+  .footer-bottom {
     flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  /* ─── Badge ─── */
+  .badge {
+    font-size: 10px;
+    padding: 5px 12px;
+  }
+
+  /* ─── Breadcrumbs ─── */
+  .breadcrumbs {
+    font-size: 12px;
+  }
+
+  /* ─── Page hero subtitle ─── */
+  .page-subtitle {
+    font-size: 15px;
   }
 }
 
 @media (max-width: 480px) {
+  .container {
+    padding: 0 14px;
+  }
+
   .hero-avatar-wrapper {
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
+  }
+
+  .hero-stat-card.top-card,
+  .hero-stat-card.bottom-card {
+    width: 92%;
+    padding: 14px 16px;
+  }
+
+  .hero-stat-card.top-card .crypto-price-val {
+    font-size: 22px !important;
+  }
+
+  #heroLiveChart {
+    height: 40px !important;
   }
   
   .about-stats {
@@ -1852,19 +2110,65 @@ textarea.form-control {
   
   .hero-actions {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
   }
 
   .hero-content h1 {
-    font-size: 32px;
+    font-size: 28px;
   }
 
   .hero-title-stacked {
-    font-size: 36px !important;
+    font-size: 32px !important;
   }
 
   section {
-    padding: 60px 0;
+    padding: 48px 0;
+  }
+
+  .section-header h2 {
+    font-size: 24px;
+  }
+
+  .page-title {
+    font-size: 28px;
+  }
+
+  .cta-banner h2 {
+    font-size: 24px;
+  }
+
+  /* Footer compact */
+  .footer-grid {
+    gap: 24px;
+  }
+
+  footer {
+    padding: 40px 0 20px;
+  }
+
+  /* Pricing card special */
+  .pricing-card {
+    padding: 24px 18px;
+  }
+
+  .pricing-card .price {
+    font-size: 36px;
+  }
+
+  /* Logo ticker faster on small screens */
+  .logo-ticker-inner {
+    gap: 32px;
+    animation-duration: 15s;
+  }
+
+  .logo-ticker-inner span {
+    font-size: 12px;
   }
 }
 
