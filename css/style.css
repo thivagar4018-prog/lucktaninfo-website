@@ -1981,21 +1981,21 @@ textarea.form-control {
 
   /* ─── Hero Section — Viewport Fit ─── */
   .hero {
-    padding: 16px 0 20px;
+    padding: 10px 0 14px;
     min-height: calc(100dvh - 64px);
     display: flex;
     align-items: center;
   }
 
   .hero .container {
-    gap: 16px;
+    gap: 10px;
     width: 100%;
   }
 
   /* Title + Avatar side by side on mobile */
   .hero-top-row {
     flex-direction: row;
-    gap: 16px;
+    gap: 10px;
     align-items: center;
   }
 
@@ -2005,9 +2005,9 @@ textarea.form-control {
   }
 
   .hero-content .badge {
-    font-size: 9px;
-    padding: 4px 10px;
-    margin-bottom: 8px;
+    font-size: 7px;
+    padding: 3px 8px;
+    margin-bottom: 4px;
   }
 
   .hero-bottom-row {
@@ -2015,24 +2015,22 @@ textarea.form-control {
   }
 
   .hero-checklist {
-    margin-bottom: 16px;
-  }
-
-  .hero-actions {
-    gap: 10px;
+    margin-bottom: 10px;
+    gap: 4px;
   }
 
   .page-hero {
-    padding: 80px 0 40px;
+    padding: 70px 0 30px;
   }
   
   .page-title {
-    font-size: 32px;
+    font-size: 24px;
   }
   
   .hero-content h1 {
-    font-size: 28px;
+    font-size: 20px;
     margin-bottom: 0;
+    line-height: 1.2;
   }
 
   .hero-content h1 br {
@@ -2040,66 +2038,83 @@ textarea.form-control {
   }
 
   .hero-content p {
-    font-size: 14px;
-    margin-bottom: 16px;
+    font-size: 12px;
+    margin-bottom: 10px;
   }
 
   .hero-title-stacked {
-    font-size: 32px !important;
-    letter-spacing: -0.5px;
+    font-size: 22px !important;
+    letter-spacing: -0.3px;
     margin-bottom: 0 !important;
-    line-height: 1.15 !important;
+    line-height: 1.2 !important;
   }
 
   .hero-checklist li {
-    font-size: 12px;
-    gap: 8px;
+    font-size: 11px;
+    gap: 6px;
   }
 
   .hero-checklist li::before {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .hero-graphic {
-    gap: 10px;
+    gap: 6px;
     width: auto;
     flex-shrink: 0;
   }
 
   .hero-avatar-wrapper {
-    width: 130px;
-    height: 130px;
-    padding: 6px;
+    width: 90px;
+    height: 90px;
+    padding: 4px;
   }
 
   .hero-avatar-wrapper::before {
-    top: -3px;
-    left: -3px;
-    right: -3px;
-    bottom: -3px;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
   }
 
-  /* Cards row — side by side, compact */
+  .hero-avatar-wrapper img {
+    border-width: 2px;
+  }
+
+  /* Cards row — side by side, ultra compact */
   .hero-cards-row {
     flex-direction: row;
     max-width: 100%;
     width: 100%;
-    gap: 8px;
+    gap: 6px;
   }
 
   .hero-stat-card-inline {
     width: auto;
     flex: 1;
-    padding: 10px 10px;
-    font-size: 11px;
+    padding: 6px 8px;
+    font-size: 10px;
   }
 
   .hero-stat-card-inline .crypto-price-val {
-    font-size: 18px !important;
+    font-size: 14px !important;
+  }
+
+  .hero-stat-card-inline .badge {
+    font-size: 6px !important;
+    padding: 1px 4px !important;
+  }
+
+  .hero-stat-card-inline .stat-title {
+    font-size: 8px !important;
+  }
+
+  .hero-stat-card-inline .ticker-change {
+    font-size: 8px !important;
   }
 
   #heroLiveChart {
-    height: 30px !important;
+    height: 22px !important;
   }
 
   .hero-actions {
