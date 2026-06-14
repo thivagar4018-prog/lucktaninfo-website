@@ -2002,6 +2002,11 @@ textarea.form-control {
 
   .hero-graphic {
     order: -1;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
   }
 
   .hero-content {
@@ -2070,9 +2075,10 @@ textarea.form-control {
   }
 
   .hero-avatar-wrapper {
-    width: 90px;
-    height: 90px;
-    padding: 4px;
+    width: 150px;
+    height: 150px;
+    padding: 5px;
+    flex-shrink: 0;
   }
 
   .hero-avatar-wrapper::before {
@@ -2086,11 +2092,11 @@ textarea.form-control {
     border-width: 2px;
   }
 
-  /* Cards row — side by side, ultra compact */
+  /* Cards stacked next to avatar */
   .hero-cards-row {
-    flex-direction: row;
-    max-width: 100%;
-    width: 100%;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
     gap: 6px;
   }
 
