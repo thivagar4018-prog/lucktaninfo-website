@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LucktanInfo | Master Bitcoin & Trade Profitably</title>
+  <meta name="description" content="Empowering traders with elite Bitcoin and cryptocurrency education. Access top courses, live trading signals, and our private trading community.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Background glows -->
+  <div class="glow-sphere top-right"></div>
+  <div class="glow-sphere bottom-left"></div>
+
+  <!-- Header Section -->
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo" id="logoLink">
+        <img src="images/logo.png" alt="LucktanInfo Logo">
+        <div class="logo-text">Lucktan<span>Info</span></div>
+      </a>
+      
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active" id="navHome">Home</a></li>
+        <li><a href="courses.html" id="navCourses">Courses</a></li>
+        <li><a href="what-we-do.html" id="navWhatWeDo">What We Do</a></li>
+        <li><a href="about.html" id="navAbout">About Us</a></li>
+        <li><a href="contact.html" id="navContact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Live Bitcoin price tracker -->
+        <div class="crypto-ticker" id="btcTicker">
+          <div class="ticker-top">
+            <span class="ticker-dot"></span>
+            <span>BTC Live Price</span>
+          </div>
+          <div class="ticker-price-row">
+            <span class="crypto-price-val">$104,510</span>
+            <span class="ticker-change up">▲ 2.4%</span>
+          </div>
+        </div>
+        
+        <a href="courses.html" class="btn btn-primary btn-sm" id="navCta">Start Learning</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="badge">Trade Smart, Build Wealth</span>
+        <h1 class="hero-title-stacked">
+          Master <br>
+          <span>Bitcoin.</span> <br>
+          Build <br>
+          <span>Wealth.</span> <br>
+          Trade <br>
+          <span>Smarter.</span>
+        </h1>
+        <ul class="hero-checklist">
+          <li>India's Premier Bitcoin Trading Academy</li>
+          <li>Empowering traders with knowledge, signals, and community.</li>
+          <li>Learn rules-based setups</li>
+          <li>Correct entry/exit metrics</li>
+          <li>1-on-1 mentorship</li>
+        </ul>
+        <div class="hero-actions">
+          <a href="courses.html" class="btn btn-primary" id="heroPrimaryBtn">Start Learning</a>
+          <a href="what-we-do.html" class="btn btn-outline" id="heroSecondaryBtn">Watch Video</a>
+        </div>
+      </div>
+      
+      <div class="hero-graphic">
+        <div class="hero-avatar-wrapper">
+          <img src="images/hero-avatar.png" alt="Glow Avatar Trader">
+        </div>
+        
+        <!-- Premium UI Stat Card 1 (BTC Live Stats & Sparkline) -->
+        <div class="hero-stat-card top-card" style="min-width: 210px; right: -40px; top: 20px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span style="font-size:14px; font-weight:700;">🪙 BTC</span>
+              <span class="badge" style="margin:0; font-size:8px; padding:2px 6px; background-color:rgba(52,199,89,0.1); border-color:rgba(52,199,89,0.2); color:var(--color-success)">Live</span>
+            </div>
+            <span class="ticker-change up" style="font-size:11px; font-weight:600;">▲ 2.4%</span>
+          </div>
+          <span class="crypto-price-val" style="font-size: 24px; font-weight: 800; font-family:'Outfit', sans-serif;">$104,510</span>
+          <!-- SVG Sparkline -->
+          <svg class="sparkline" width="100%" height="35" style="margin-top:8px; overflow:visible;">
+            <path d="M 0 25 Q 30 5 60 18 T 120 5 T 160 12 T 180 2" fill="none" stroke="var(--color-success)" stroke-width="2"></path>
+          </svg>
+        </div>
+        
+        <!-- Premium UI Stat Card 2 (Multi-asset Tracker Widget) -->
+        <div class="hero-stat-card bottom-card" style="flex-direction:column; align-items:stretch; min-width: 220px; left: -40px; bottom: 10px; padding: 16px 20px; gap: 10px; box-shadow: var(--border-glow);">
+          <span class="stat-title" style="margin-bottom: 2px; font-weight:600; letter-spacing:0.5px;">Dashboard Index</span>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+              <span style="font-size:12px; font-weight:500; color:var(--text-secondary);">🪙 ETH</span>
+              <span style="font-size:12px; font-weight:700;">$3,450 <span style="color:var(--color-danger); font-size:9px; font-weight:600;">▼ 1.2%</span></span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:12px; font-weight:500; color:var(--text-secondary);">🪙 SOL</span>
+              <span style="font-size:12px; font-weight:700;">$185 <span style="color:var(--color-success); font-size:9px; font-weight:600;">▲ 4.8%</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scrolling Partner Logo Ticker -->
+  <div class="logo-ticker">
+    <div class="container">
+      <div class="logo-ticker-inner">
+        <span>BINANCE</span>
+        <span>COINBASE</span>
+        <span>BYBIT</span>
+        <span>KRAKEN</span>
+        <span>OKX</span>
+        <span>KUCOIN</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features List Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Academy Benefits</span>
+        <h2>Everything You Need to Trade <span>Bitcoin Profitably</span></h2>
+        <p>We provide a comprehensive framework to transition you from a complete beginner to a confident, self-sufficient trader.</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📚</div>
+          <h3>Bitcoin Trading Courses</h3>
+          <p>Learn core concepts, order books, market structures, and blockchain fundamentals with practical step-by-step videos.</p>
+        </div>
+        <div class="feature-card featured">
+          <div class="card-badge">Hot</div>
+          <div class="feature-icon">🚀</div>
+          <h3>Trading Launch Guide</h3>
+          <p>An interactive, progressive roadmap designed to set up your charting tools, broker accounts, and risk-management sheets.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌐</div>
+          <h3>Economics Advisory</h3>
+          <p>Understand interest rates, inflation, macro cycles, and how global liquidity flows affect the price of Bitcoin.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>Secret Portfolio Reviews</h3>
+          <p>Submit your holding allocations and trading histories for constructive audits by senior fund managers every month.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💬</div>
+          <h3>1-on-1 Mentorship</h3>
+          <p>Get direct coaching, psychological counseling, and custom plan building with our veteran trading team.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚙️</div>
+          <h3>AutoTrader Strategy</h3>
+          <p>Learn to automate rules-based strategies using Python scripts and cloud bots to execute trades 24/7 without emotion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pathway Selection Section -->
+  <section class="section-padding" style="background-color: rgba(255, 255, 255, 0.01); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Choose Your Path</span>
+        <h2>We Build <span>Profitable Bitcoin Traders</span></h2>
+        <p>Choose the track that fits your current trading experience and career goals.</p>
+      </div>
+      
+      <div class="pricing-grid">
+        <!-- Path 1 -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3>Beginner Track</h3>
+            <div class="price">Level 1</div>
+            <p class="pricing-desc">For newcomers looking to understand cryptocurrency fundamentals, purchase their first BTC safely, and read charts correctly.</p>
+          </div>
+          <ul class="pricing-features">
+            <li>Intro to wallets & security</li>
+            <li>Basic Candlestick Patterns</li>
+            <li>Spot market trading guide</li>
+            <li class="disabled">Leverage & Futures Trading</li>
+            <li class="disabled">Automated scripting</li>
+          </ul>
+          <a href="courses.html" class="btn btn-outline btn-pricing">View Path</a>
+        </div>
+        
+        <!-- Path 2 -->
+        <div class="pricing-card popular">
+          <span class="pricing-tag">Popular</span>
+          <div class="pricing-header">
+            <h3>Pro Trader Track</h3>
+            <div class="price">Level 2</div>
+            <p class="pricing-desc">For active retail traders aiming to manage risk scientifically, execute swing setups, and join a live trading community.</p>
+          </div>
+          <ul class="pricing-features">
+            <li>Advanced price action rules</li>
+            <li>Position-sizing calculator</li>
+            <li>Live daily community chats</li>
+            <li>DeFi yield farming tutorials</li>
+            <li class="disabled">Automated scripting</li>
+          </ul>
+          <a href="courses.html" class="btn btn-primary btn-pricing">View Path</a>
+        </div>
+        
+        <!-- Path 3 -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3>Elite Alchemist Track</h3>
+            <div class="price">Level 3</div>
+            <p class="pricing-desc">For developers and advanced traders aiming to write automated trading bots, audit smart contracts, and master system designs.</p>
+          </div>
+          <ul class="pricing-features">
+            <li>Python bot frameworks</li>
+            <li>Derivatives pricing math</li>
+            <li>L1/L2 gas optimization tricks</li>
+            <li>Private developer chatroom</li>
+            <li>Monthly group code review</li>
+          </ul>
+          <a href="courses.html" class="btn btn-outline btn-pricing">View Path</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trophy Milestone Showcase Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="split-showcase">
+        <div class="showcase-content">
+          <span class="badge">Academy Achievements</span>
+          <h2 style="font-size:42px; margin-bottom:24px;">Empowering A New Class of <span>Global Investors</span></h2>
+          <p style="color:var(--text-secondary); margin-bottom:30px;">LucktanInfo is recognized as a leader in crypto training. We specialize in transforming raw interest into precise, disciplined execution.</p>
+          <div class="showcase-steps" style="gap:16px;">
+            <div style="display:flex; align-items:center; gap:16px;">
+              <span class="step-num" style="background-color:rgba(241,168,10,0.1); color:var(--color-primary); font-size:18px;">✓</span>
+              <div>
+                <h4 style="font-size:16px;">10,000+ Students Globally</h4>
+                <p style="font-size:13px; color:var(--text-muted);">Graduates active in over 30 countries.</p>
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:16px;">
+              <span class="step-num" style="background-color:rgba(241,168,10,0.1); color:var(--color-primary); font-size:18px;">✓</span>
+              <div>
+                <h4 style="font-size:16px;">Verified Track Record</h4>
+                <p style="font-size:13px; color:var(--text-muted);">94% course satisfaction and completion score.</p>
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:16px;">
+              <span class="step-num" style="background-color:rgba(241,168,10,0.1); color:var(--color-primary); font-size:18px;">✓</span>
+              <div>
+                <h4 style="font-size:16px;">Elite Mentorship Squad</h4>
+                <p style="font-size:13px; color:var(--text-muted);">Direct training with analysts holding 7+ years of track record.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="showcase-image" style="background: radial-gradient(circle, rgba(241, 168, 10, 0.15) 0%, rgba(0,0,0,0.9) 70%); display:flex; flex-direction:column; justify-content:center; align-items:center; padding:40px; text-align:center;">
+          <div style="font-size:80px; margin-bottom:20px; animation: pulse-dot 2s infinite;">🏆</div>
+          <h3 style="font-size:24px; margin-bottom:10px;">Best Cryptocurrency Education Provider</h3>
+          <p style="color:var(--text-secondary); max-width:300px; font-size:14px; margin-bottom:20px;">Awarded by the Financial Innovation Guild for excellence in curriculum design.</p>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section-padding" style="background-color: rgba(255, 255, 255, 0.01); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Student Success</span>
+        <h2>What Our <span>Traders Say</span></h2>
+        <p>Read about the journeys, breakthroughs, and profit achievements of our active graduates.</p>
+      </div>
+      
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"LucktanInfo transformed my trading. I went from losing money to making consistent profits every month. The risk sheets are incredibly valuable."</p>
+          <div class="testimonial-user">
+            <div class="user-avatar">RS</div>
+            <div class="user-info">
+              <h4>Rahul Sharma</h4>
+              <p>Bitcoin Trader • Mumbai</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"The Chart Masterclass alone was worth every rupee. Their strategies are precise, rules-based, and the community is highly supportive."</p>
+          <div class="testimonial-user">
+            <div class="user-avatar">PD</div>
+            <div class="user-info">
+              <h4>Priya D'Souza</h4>
+              <p>Crypto Investor • Bangalore</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Clear advice that actually works. The VIP channels are a game changer. I've grown my portfolio and learned real market mechanics."</p>
+          <div class="testimonial-user">
+            <div class="user-avatar">AP</div>
+            <div class="user-info">
+              <h4>Arjun Patel</h4>
+              <p>DeFi Developer • Delhi</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platforms We Teach Tag List Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Supported Technologies</span>
+        <h2>Platforms & <span>Tools We Teach</span></h2>
+        <p>Master the exact interfaces, libraries, and protocols used by professional crypto traders.</p>
+      </div>
+      
+      <div class="tags-list">
+        <span class="tag-pill">TradingView</span>
+        <span class="tag-pill">Binance</span>
+        <span class="tag-pill">CoinMarketCap</span>
+        <span class="tag-pill">MetaTrader 5</span>
+        <span class="tag-pill">Python API</span>
+        <span class="tag-pill">Bybit Exchange</span>
+        <span class="tag-pill">dYdX protocol</span>
+        <span class="tag-pill">Uniswap V3</span>
+        <span class="tag-pill">Ledger Cold Wallet</span>
+        <span class="tag-pill">Glassnode On-Chain</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Details Section -->
+  <section class="section-padding" style="background-color: rgba(255, 255, 255, 0.01); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Simple Pricing</span>
+        <h2>Invest in Your <span>Trading Future</span></h2>
+        <p>Unlock professional curriculum, active trade setups, and live trading rooms that pay for themselves.</p>
+      </div>
+      
+      <div class="pricing-grid">
+        <!-- Starter Plan -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3>Starter Membership</h3>
+            <div class="price">$149<span>/mo</span></div>
+            <p class="pricing-desc">Perfect for beginners aiming to learn fundamentals, risk math, and technical indicators.</p>
+          </div>
+          <ul class="pricing-features">
+            <li>Weekly trading webinars</li>
+            <li>Standard Discord access</li>
+            <li>Basic course libraries</li>
+            <li>Portfolio tracker spreadsheet</li>
+            <li class="disabled">Live trading room</li>
+            <li class="disabled">1-on-1 monthly audit</li>
+          </ul>
+          <a href="contact.html" class="btn btn-outline btn-pricing">Get Started</a>
+        </div>
+        
+        <!-- Pro Plan -->
+        <div class="pricing-card popular">
+          <span class="pricing-tag">Recommended</span>
+          <div class="pricing-header">
+            <h3>Pro Trader Plan</h3>
+            <div class="price">$299<span>/mo</span></div>
+            <p class="pricing-desc">For full-time aspiration traders aiming to follow live setups and join live call-outs daily.</p>
+          </div>
+          <ul class="pricing-features">
+            <li>Everything in Starter</li>
+            <li>Access to live trading room</li>
+            <li>Daily signal alert channel</li>
+            <li>Advanced Discord private areas</li>
+            <li>Priority Q&A chat access</li>
+            <li class="disabled">1-on-1 monthly audit</li>
+          </ul>
+          <a href="contact.html" class="btn btn-primary btn-pricing">Get Started</a>
+        </div>
+        
+        <!-- Elite Plan -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3>Elite Advisory</h3>
+            <div class="price">$599<span>/mo</span></div>
+            <p class="pricing-desc">For institutions and high net worth traders seeking customized algorithms and audit reviews.</p>
+          </div>
+          <ul class="pricing-features">
+            <li>Everything in Pro Trader</li>
+            <li>1-on-1 monthly portfolio audit</li>
+            <li>Private channel with founders</li>
+            <li>AutoTrader script codebases</li>
+            <li>Tailored risk profiles</li>
+            <li>Lifetime software licenses</li>
+          </ul>
+          <a href="contact.html" class="btn btn-outline btn-pricing">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">FAQs</span>
+        <h2>Frequently Asked <span>Questions</span></h2>
+        <p>Get answers to common questions about our platform, schedules, and learning methods.</p>
+      </div>
+      
+      <div class="faq-list">
+        <!-- Column 1 Items -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h4>Who is this course for?</h4>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Ideal for beginners, enthusiasts, and professionals wanting practical guidance to enter today's evolving crypto market.
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h4>Is there a private community?</h4>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes! All courses include access to our private Discord forum to ask questions, chat with mentors, and share charting updates.
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h4>Is there a refund policy?</h4>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes, we offer a 14-day refund window if you determine the course is not a fit for your learning goals.
+            </div>
+          </div>
+        </div>
+        
+        <!-- Column 2 Items -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h4>Are there any discounts or bundles?</h4>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              We regularly drop exclusive bundle deals and flash discounts so you can find more courses for less and level up your skills.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h4>Can I learn at my own pace?</h4>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes, all materials are fully online and self-paced. You can pause, review, and learn at whatever speed is comfortable for you.
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h4>Do I get a certificate?</h4>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Upon finishing all modules and passing the final simulated portfolio audit exam, you will receive a verifiable digital credential that can be shared on LinkedIn.
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-cta-link">
+        Have more questions? <a href="contact.html">Contact our support squad →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner Section -->
+  <section class="container">
+    <div class="cta-banner">
+      <h2>Ready to Start Your Bitcoin Journey?</h2>
+      <p>Join 10,000+ traders globally who have mastered market structures and risk control.</p>
+      <a href="courses.html" class="btn">Get Started Now</a>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo" style="margin-bottom: 16px;">
+            <img src="images/logo.png" alt="LucktanInfo Logo">
+            <div class="logo-text">Lucktan<span>Info</span></div>
+          </div>
+          <p>India's premier Bitcoin trading academy. Empowering retail traders with institutional-grade knowledge, live signals, and community support.</p>
+          <form class="footer-newsletter" id="newsletterForm">
+            <input type="email" placeholder="Enter your email" required aria-label="Email address">
+            <button type="submit" aria-label="Subscribe">✉</button>
+          </form>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="what-we-do.html">What We Do</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="#" class="social-icon">𝕏</a>
+            <a href="#" class="social-icon">📷</a>
+            <a href="#" class="social-icon">📺</a>
+            <a href="#" class="social-icon">💬</a>
+          </div>
+          <ul class="footer-social-links">
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Risk Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 LucktanInfo Academy. All Rights Reserved.</p>
+        <p style="max-width: 800px; margin: 0 auto; color: var(--text-muted); font-size:11px; line-height:1.4;">Disclaimer: Cryptocurrency trading involves significant financial risk. Past performance is not indicative of future results. Content provided by LucktanInfo is strictly for educational purposes and should not be construed as investment advice.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses | LucktanInfo Bitcoin Academy</title>
+  <meta name="description" content="Explore our cryptocurrency trading courses. From beginner fundamentals to expert automated algorithm building.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Background glows -->
+  <div class="glow-sphere top-right"></div>
+  <div class="glow-sphere bottom-left"></div>
+
+  <!-- Header Section -->
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo" id="logoLink">
+        <img src="images/logo.png" alt="LucktanInfo Logo">
+        <div class="logo-text">Lucktan<span>Info</span></div>
+      </a>
+      
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" id="navHome">Home</a></li>
+        <li><a href="courses.html" class="active" id="navCourses">Courses</a></li>
+        <li><a href="what-we-do.html" id="navWhatWeDo">What We Do</a></li>
+        <li><a href="about.html" id="navAbout">About Us</a></li>
+        <li><a href="contact.html" id="navContact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Live Bitcoin price tracker -->
+        <div class="crypto-ticker" id="btcTicker">
+          <div class="ticker-top">
+            <span class="ticker-dot"></span>
+            <span>BTC Live Price</span>
+          </div>
+          <div class="ticker-price-row">
+            <span class="crypto-price-val">$104,510</span>
+            <span class="ticker-change up">▲ 2.4%</span>
+          </div>
+        </div>
+        
+        <a href="courses.html" class="btn btn-primary btn-sm" id="navCta">Start Learning</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero Section -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge">Our Courses</span>
+      <h1 class="page-title">Services</h1>
+      <p class="page-subtitle">From basics to advanced trading, our crypto courses help you grow skills and profits.</p>
+      <div class="breadcrumbs">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Courses</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses Grid Section -->
+  <section class="section-padding" style="padding-top: 20px;">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Learning Tracks</span>
+        <h2>We Build <span>Profitable Bitcoin Traders</span></h2>
+        <p>Choose your learning path and start your crypto journey today.</p>
+      </div>
+      
+      <div class="courses-grid">
+        <!-- Course 1 -->
+        <div class="course-card">
+          <div class="course-img">
+            <img src="images/course-beginner.png" alt="Bitcoin Beginner Bootcamp">
+            <span class="course-difficulty">Beginner</span>
+          </div>
+          <div class="course-body">
+            <h3>Bitcoin Beginner Bootcamp</h3>
+            <p>Learn BTC fundamentals, wallet setups, exchanges, charts, and execute your first profitable trade.</p>
+            <div class="course-footer">
+              <a href="contact.html" class="enroll-link">Enroll Now →</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Course 2 (Featured Card) -->
+        <div class="course-card featured-card">
+          <div class="course-img">
+            <img src="images/course-chart.png" alt="Chart Masterclass">
+            <span class="course-difficulty">Intermediate</span>
+            <span class="card-badge" style="top: 16px; right: 16px;">Featured</span>
+          </div>
+          <div class="course-body">
+            <h3>Chart Masterclass</h3>
+            <p>Master candlestick patterns, key indicators, and execution entry/exit strategies used by pro traders.</p>
+            <a href="contact.html" class="btn-enroll" style="margin-top: 10px;">Enroll Now</a>
+          </div>
+        </div>
+        
+        <!-- Course 3 -->
+        <div class="course-card">
+          <div class="course-img">
+            <img src="images/course-defi.png" alt="DeFi Deep Dive">
+            <span class="course-difficulty">Intermediate</span>
+          </div>
+          <div class="course-body">
+            <h3>DeFi Deep Dive</h3>
+            <p>Explore yield farming, liquidity pools, and passive income strategies in the DeFi ecosystem.</p>
+            <div class="course-footer">
+              <a href="contact.html" class="enroll-link">Enroll Now →</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Course 4 -->
+        <div class="course-card">
+          <div class="course-img">
+            <img src="images/market-chart.png" alt="Trading Strategy Mastery">
+            <span class="course-difficulty">Advanced</span>
+          </div>
+          <div class="course-body">
+            <h3>Trading Strategy Mastery</h3>
+            <p>Designed for active traders ready to build consistent, rule-based, and profitable trading strategies.</p>
+            <div class="course-footer">
+              <a href="contact.html" class="enroll-link">Enroll Now →</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Course 5 (Featured Card) -->
+        <div class="course-card featured-card">
+          <div class="course-img">
+            <img src="images/coder-desk.png" alt="Bullets and Security">
+            <span class="course-difficulty">Intermediate</span>
+            <span class="card-badge" style="top: 16px; right: 16px;">Featured</span>
+          </div>
+          <div class="course-body">
+            <h3>Bullets and Security</h3>
+            <p>Learn to manage, back up, and secure your digital assets safely against hacks, phishing, and scams.</p>
+            <a href="contact.html" class="btn-enroll" style="margin-top: 10px;">Enroll Now</a>
+          </div>
+        </div>
+        
+        <!-- Course 6 -->
+        <div class="course-card">
+          <div class="course-img">
+            <img src="images/bitcoin-gold.png" alt="Advanced Chain Build">
+            <span class="course-difficulty">Expert</span>
+          </div>
+          <div class="course-body">
+            <h3>Advanced Chain Build</h3>
+            <p>Designed for building scalable, high-throughput, and production-ready blockchain systems from scratch.</p>
+            <div class="course-footer">
+              <a href="contact.html" class="enroll-link">Enroll Now →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section-padding" style="background-color: rgba(255, 255, 255, 0.01); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Student Reviews</span>
+        <h2>What Our <span>Traders Say</span></h2>
+        <p>See how others advanced their crypto skills and profits through expert training.</p>
+      </div>
+      
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"LucktanInfo transformed my trading. I went from losing money to making consistent profits every month. The risk sheets are incredibly valuable."</p>
+          <div class="testimonial-user">
+            <div class="user-avatar">RS</div>
+            <div class="user-info">
+              <h4>Rahul Sharma</h4>
+              <p>Bitcoin Trader • Mumbai</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"The Chart Masterclass alone was worth every rupee. Their strategies are precise, rules-based, and the community is highly supportive."</p>
+          <div class="testimonial-user">
+            <div class="user-avatar">PD</div>
+            <div class="user-info">
+              <h4>Priya D'Souza</h4>
+              <p>Crypto Investor • Bangalore</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Clear advice that actually works. The VIP channels are a game changer. I've grown my portfolio and learned real market mechanics."</p>
+          <div class="testimonial-user">
+            <div class="user-avatar">AP</div>
+            <div class="user-info">
+              <h4>Arjun Patel</h4>
+              <p>DeFi Developer • Delhi</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">FAQ</span>
+        <h2>Frequently Asked <span>Questions</span></h2>
+        <p>Quick answers to standard questions about our educational services.</p>
+      </div>
+      
+      <div class="faq-list">
+        <!-- Column 1 Items -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h4>Who is this course for?</h4>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Ideal for beginners, enthusiasts, and professionals wanting practical guidance to enter today's evolving crypto market.
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h4>Is there a private community?</h4>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes! All courses include access to our private Discord forum to ask questions, chat with mentors, and share charting updates.
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h4>Is there a refund policy?</h4>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes, we offer a 14-day refund window if you determine the course is not a fit for your learning goals.
+            </div>
+          </div>
+        </div>
+        
+        <!-- Column 2 Items -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h4>Are there any discounts or bundles?</h4>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              We regularly drop exclusive bundle deals and flash discounts so you can find more courses for less and level up your skills.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h4>Can I learn at my own pace?</h4>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes, all materials are fully online and self-paced. You can pause, review, and learn at whatever speed is comfortable for you.
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h4>Do I get a certificate?</h4>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Upon finishing all modules and passing the final simulated portfolio audit exam, you will receive a verifiable digital credential that can be shared on LinkedIn.
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-cta-link">
+        Have more questions? <a href="contact.html">Contact us →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner Section -->
+  <section class="container">
+    <div class="cta-banner">
+      <h2>Ready to Start Your Bitcoin Journey?</h2>
+      <p>Join 10,000+ traders building wealth with crypto today.</p>
+      <a href="contact.html" class="btn">Get Started Now</a>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo" style="margin-bottom: 16px;">
+            <img src="images/logo.png" alt="LucktanInfo Logo">
+            <div class="logo-text">Lucktan<span>Info</span></div>
+          </div>
+          <p>India's premier Bitcoin trading academy. Empowering retail traders with institutional-grade knowledge, live signals, and community support.</p>
+          <form class="footer-newsletter" id="newsletterForm">
+            <input type="email" placeholder="Enter your email" required aria-label="Email address">
+            <button type="submit" aria-label="Subscribe">✉</button>
+          </form>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="what-we-do.html">What We Do</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="#" class="social-icon">𝕏</a>
+            <a href="#" class="social-icon">📷</a>
+            <a href="#" class="social-icon">📺</a>
+            <a href="#" class="social-icon">💬</a>
+          </div>
+          <ul class="footer-social-links">
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Risk Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 LucktanInfo Academy. All Rights Reserved.</p>
+        <p style="max-width: 800px; margin: 0 auto; color: var(--text-muted); font-size:11px; line-height:1.4;">Disclaimer: Cryptocurrency trading involves significant financial risk. Past performance is not indicative of future results. Content provided by LucktanInfo is strictly for educational purposes and should not be construed as investment advice.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
