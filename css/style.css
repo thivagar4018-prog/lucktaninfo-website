@@ -307,15 +307,25 @@ header .container {
 
 /* Index / Hero Section */
 .hero {
-  padding: 70px 0 60px;
+  padding: 70px 0 50px;
   position: relative;
 }
 
 .hero .container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.hero-top-row {
+  display: flex;
   align-items: center;
-  gap: 50px;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.hero-bottom-row {
+  max-width: 600px;
 }
 
 .hero-content h1 {
@@ -1790,17 +1800,18 @@ textarea.form-control {
 
 /* Responsiveness / Mobile Viewports */
 @media (max-width: 1024px) {
-  .hero .container, .split-showcase, .contact-form-section {
+  .split-showcase, .contact-form-section {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  
-  .hero-graphic {
-    order: -1;
-    min-height: 380px;
+
+  .hero-top-row {
+    flex-direction: column-reverse;
+    text-align: center;
   }
 
-  .hero-content {
+  .hero-bottom-row {
+    max-width: 100%;
     text-align: center;
   }
 
