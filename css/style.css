@@ -1819,6 +1819,272 @@ textarea.form-control {
   font-size: 13px;
 }
 
+/* ═══════════════════════════════════════════
+   Blockchain Technology Section
+   ═══════════════════════════════════════════ */
+
+/* Intro: Visual + Description */
+.blockchain-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.blockchain-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.chain-blocks {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chain-block {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  padding: 20px 24px;
+  text-align: center;
+  position: relative;
+  transition: var(--transition-smooth);
+}
+
+.chain-block:hover {
+  border-color: rgba(241, 168, 10, 0.3);
+  transform: translateY(-4px);
+}
+
+.chain-block.active {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 20px rgba(241, 168, 10, 0.15);
+}
+
+.block-hash {
+  font-family: 'Outfit', monospace;
+  font-size: 12px;
+  color: var(--color-primary);
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  opacity: 0.8;
+}
+
+.block-label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.block-pulse {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  animation: pulse-dot 2s infinite;
+}
+
+.chain-link {
+  color: var(--color-primary);
+  font-size: 20px;
+  opacity: 0.5;
+}
+
+.blockchain-desc h3 {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.blockchain-desc p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.blockchain-desc strong {
+  color: var(--color-primary);
+}
+
+/* How It Works Steps */
+.blockchain-steps-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.blockchain-steps-header h3 {
+  font-size: 24px;
+}
+
+.blockchain-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 60px;
+}
+
+.bc-step {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  padding: 24px 20px;
+  text-align: center;
+  transition: var(--transition-smooth);
+}
+
+.bc-step:hover {
+  border-color: rgba(241, 168, 10, 0.25);
+  transform: translateY(-3px);
+}
+
+.bc-step-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(241, 168, 10, 0.1);
+  color: var(--color-primary);
+  font-weight: 800;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+}
+
+.bc-step h4 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.bc-step p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Key Features */
+.blockchain-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 60px;
+}
+
+.bc-feature {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  padding: 28px 20px;
+  text-align: center;
+  transition: var(--transition-smooth);
+}
+
+.bc-feature:hover {
+  border-color: rgba(241, 168, 10, 0.3);
+  transform: translateY(-3px);
+}
+
+.bc-feature-icon {
+  font-size: 32px;
+  margin-bottom: 14px;
+}
+
+.bc-feature h4 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.bc-feature p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Common Uses */
+.blockchain-uses {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.blockchain-uses h3 {
+  font-size: 22px;
+  margin-bottom: 24px;
+}
+
+.bc-uses-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.bc-use-pill {
+  background: rgba(241, 168, 10, 0.06);
+  border: 1px solid rgba(241, 168, 10, 0.15);
+  border-radius: 100px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: var(--transition-smooth);
+}
+
+.bc-use-pill:hover {
+  background: rgba(241, 168, 10, 0.12);
+  border-color: rgba(241, 168, 10, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Analogy Callout */
+.blockchain-analogy {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background: rgba(241, 168, 10, 0.04);
+  border: 1px solid rgba(241, 168, 10, 0.15);
+  border-left: 3px solid var(--color-primary);
+  border-radius: var(--border-radius-md);
+  padding: 28px 32px;
+  margin-bottom: 48px;
+}
+
+.analogy-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.analogy-content h4 {
+  font-size: 16px;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.analogy-content p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Blockchain CTA */
+.blockchain-cta {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.blockchain-cta p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.blockchain-cta strong {
+  color: var(--color-primary);
+}
+
 /* Responsiveness / Mobile Viewports */
 @media (max-width: 1024px) {
   .split-showcase, .contact-form-section {
@@ -2002,11 +2268,6 @@ textarea.form-control {
 
   .hero-graphic {
     order: -1;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    justify-content: center;
   }
 
   .hero-content {
@@ -2075,10 +2336,9 @@ textarea.form-control {
   }
 
   .hero-avatar-wrapper {
-    width: 150px;
-    height: 150px;
-    padding: 5px;
-    flex-shrink: 0;
+    width: 90px;
+    height: 90px;
+    padding: 4px;
   }
 
   .hero-avatar-wrapper::before {
@@ -2092,11 +2352,11 @@ textarea.form-control {
     border-width: 2px;
   }
 
-  /* Cards stacked next to avatar */
+  /* Cards row — side by side, ultra compact */
   .hero-cards-row {
-    flex-direction: column;
-    flex: 1;
-    min-width: 0;
+    flex-direction: row;
+    max-width: 100%;
+    width: 100%;
     gap: 6px;
   }
 
@@ -2288,6 +2548,134 @@ textarea.form-control {
   }
 
   .showcase-step-card p {
+    font-size: 12px;
+  }
+
+  /* ─── Blockchain Section Mobile ─── */
+  .blockchain-intro {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .chain-block {
+    padding: 12px 14px;
+  }
+
+  .block-hash {
+    font-size: 9px;
+  }
+
+  .block-label {
+    font-size: 11px;
+  }
+
+  .chain-link {
+    font-size: 14px;
+  }
+
+  .blockchain-desc h3 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .blockchain-desc p {
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .blockchain-steps-header h3 {
+    font-size: 18px;
+  }
+
+  .blockchain-steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .bc-step {
+    padding: 14px 12px;
+  }
+
+  .bc-step-num {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  .bc-step h4 {
+    font-size: 13px;
+  }
+
+  .bc-step p {
+    font-size: 11px;
+  }
+
+  .blockchain-features {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .bc-feature {
+    padding: 16px 12px;
+  }
+
+  .bc-feature-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .bc-feature h4 {
+    font-size: 13px;
+  }
+
+  .bc-feature p {
+    font-size: 11px;
+  }
+
+  .blockchain-uses {
+    margin-bottom: 28px;
+  }
+
+  .blockchain-uses h3 {
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+
+  .bc-use-pill {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .bc-uses-grid {
+    gap: 6px;
+  }
+
+  .blockchain-analogy {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 18px 16px;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .analogy-icon {
+    font-size: 24px;
+  }
+
+  .analogy-content h4 {
+    font-size: 14px;
+  }
+
+  .analogy-content p {
+    font-size: 11px;
+  }
+
+  .blockchain-cta p {
     font-size: 12px;
   }
 
