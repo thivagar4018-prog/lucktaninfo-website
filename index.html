@@ -687,9 +687,59 @@
   <div class="crypto-pay-overlay" id="cryptoPayOverlay">
     <div class="crypto-pay-modal">
       <button class="crypto-pay-close" id="cryptoPayClose">✕</button>
-      
+      <!-- Step Progress Indicator -->
+      <div class="pay-progress-steps" id="payProgressSteps">
+        <div class="progress-step active" data-step="0"><span>1</span> Register</div>
+        <div class="progress-step" data-step="1"><span>2</span> Payment</div>
+        <div class="progress-step" data-step="2"><span>3</span> Confirm</div>
+        <div class="progress-step" data-step="3"><span>4</span> Success</div>
+      </div>
+
+      <!-- Step 0: Registration Form -->
+      <div class="pay-step" id="payStep0">
+        <div class="pay-header">
+          <div class="pay-icon">📝</div>
+          <h3>Register for Enrollment</h3>
+          <p>Fill in your details to proceed to payment</p>
+        </div>
+
+        <div class="pay-plan-summary" id="payPlanSummaryReg">
+          <div class="pay-plan-name" id="payPlanNameReg">Pro Trader</div>
+          <div class="pay-plan-price" id="payPlanPriceReg">$299<span>/mo</span></div>
+        </div>
+
+        <form class="reg-form" id="regForm">
+          <div class="reg-field">
+            <label for="regName">Full Name *</label>
+            <input type="text" id="regName" placeholder="Enter your full name" required>
+          </div>
+          <div class="reg-field">
+            <label for="regEmail">Email Address *</label>
+            <input type="email" id="regEmail" placeholder="you@example.com" required>
+          </div>
+          <div class="reg-field">
+            <label for="regPhone">Phone Number *</label>
+            <input type="tel" id="regPhone" placeholder="+91 98765 43210" required>
+          </div>
+          <div class="reg-field">
+            <label for="regExperience">Trading Experience</label>
+            <select id="regExperience">
+              <option value="beginner">Beginner — I'm new to crypto</option>
+              <option value="intermediate">Intermediate — I've traded before</option>
+              <option value="advanced">Advanced — I trade regularly</option>
+              <option value="professional">Professional — Full-time trader</option>
+            </select>
+          </div>
+          <div class="reg-terms">
+            <input type="checkbox" id="regTerms" required>
+            <label for="regTerms">I agree to the <a href="#" style="color:var(--color-primary);">Terms of Service</a> and <a href="#" style="color:var(--color-primary);">Privacy Policy</a></label>
+          </div>
+          <button type="submit" class="btn btn-primary pay-confirm-btn" id="regSubmitBtn">Continue to Payment →</button>
+        </form>
+      </div>
+
       <!-- Step 1: Payment Selection -->
-      <div class="pay-step" id="payStep1">
+      <div class="pay-step" id="payStep1" style="display:none;">
         <div class="pay-header">
           <div class="pay-icon">⛓️</div>
           <h3>Blockchain Payment Gateway</h3>

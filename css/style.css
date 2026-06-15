@@ -2187,6 +2187,141 @@ textarea.form-control {
   color: var(--color-primary);
 }
 
+/* Progress Step Indicator */
+.pay-progress-steps {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.progress-step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-muted);
+  opacity: 0.4;
+  transition: all 0.3s ease;
+}
+
+.progress-step.active {
+  opacity: 1;
+  color: var(--color-primary);
+}
+
+.progress-step.done {
+  opacity: 1;
+  color: #34C759;
+}
+
+.progress-step span {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 10px;
+}
+
+.progress-step.active span {
+  background: rgba(241,168,10,0.15);
+  color: var(--color-primary);
+  box-shadow: 0 0 8px rgba(241,168,10,0.2);
+}
+
+.progress-step.done span {
+  background: rgba(52,199,89,0.15);
+  color: #34C759;
+}
+
+/* Registration Form */
+.reg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.reg-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.reg-field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.reg-field input,
+.reg-field select {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  padding: 12px 14px;
+  font-size: 14px;
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  transition: var(--transition-smooth);
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.reg-field input:focus,
+.reg-field select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(241,168,10,0.1);
+}
+
+.reg-field input::placeholder {
+  color: var(--text-muted);
+}
+
+.reg-field select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23888' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+.reg-field select option {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.reg-terms {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.reg-terms input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  accent-color: var(--color-primary);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.reg-terms label {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  cursor: pointer;
+}
+
 /* Pay Header */
 .pay-header {
   text-align: center;

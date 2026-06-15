@@ -935,12 +935,19 @@ function openCryptoPay(planName, priceLabel, amount) {
   const overlay = document.getElementById('cryptoPayOverlay');
   if (!overlay) return;
 
-  // Reset to step 1
-  document.getElementById('payStep1').style.display = 'block';
+  // Reset to step 0 (registration)
+  document.getElementById('payStep0').style.display = 'block';
+  document.getElementById('payStep1').style.display = 'none';
   document.getElementById('payStep2').style.display = 'none';
   document.getElementById('payStep3').style.display = 'none';
 
-  // Fill plan info
+  // Reset form
+  const form = document.getElementById('regForm');
+  if (form) form.reset();
+
+  // Fill plan info on both registration and payment steps
+  document.getElementById('payPlanNameReg').textContent = planName;
+  document.getElementById('payPlanPriceReg').innerHTML = priceLabel.replace('/', '<span>/') + '</span>';
   document.getElementById('payPlanName').textContent = planName;
   document.getElementById('payPlanPrice').innerHTML = priceLabel.replace('/', '<span>/') + '</span>';
 
@@ -948,9 +955,21 @@ function openCryptoPay(planName, priceLabel, amount) {
   document.querySelectorAll('.pay-coin').forEach(c => c.classList.remove('active'));
   document.getElementById('coinBTC').classList.add('active');
 
+  // Set progress to step 0
+  setProgressStep(0);
+
   updateCryptoAmount();
   overlay.classList.add('active');
   document.body.style.overflow = 'hidden';
+}
+
+function setProgressStep(step) {
+  const steps = document.querySelectorAll('.progress-step');
+  steps.forEach((el, i) => {
+    el.classList.remove('active', 'done');
+    if (i < step) el.classList.add('done');
+    else if (i === step) el.classList.add('active');
+  });
 }
 
 function updateCryptoAmount() {
@@ -1005,6 +1024,7 @@ function runBlockchainConfirmation() {
       setTimeout(() => {
         document.getElementById('payStep2').style.display = 'none';
         document.getElementById('payStep3').style.display = 'block';
+        setProgressStep(3);
 
         const data = CRYPTO_DATA[currentCoin];
         const cryptoAmount = (currentPayAmount / data.rate).toFixed(data.decimals);
@@ -1084,6 +1104,18 @@ function initCryptoPayGateway() {
     });
   });
 
+  // Registration form submission
+  const regForm = document.getElementById('regForm');
+  if (regForm) {
+    regForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Move from Step 0 (Register) to Step 1 (Payment)
+      document.getElementById('payStep0').style.display = 'none';
+      document.getElementById('payStep1').style.display = 'block';
+      setProgressStep(1);
+    });
+  }
+
   // Copy wallet address
   if (copyBtn) {
     copyBtn.addEventListener('click', () => {
@@ -1100,6 +1132,7 @@ function initCryptoPayGateway() {
     confirmBtn.addEventListener('click', () => {
       document.getElementById('payStep1').style.display = 'none';
       document.getElementById('payStep2').style.display = 'block';
+      setProgressStep(2);
       runBlockchainConfirmation();
     });
   }
