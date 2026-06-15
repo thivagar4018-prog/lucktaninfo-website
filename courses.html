@@ -82,7 +82,8 @@
             <h3>Bitcoin Beginner Bootcamp</h3>
             <p>Learn BTC fundamentals, wallet setups, exchanges, charts, and execute your first profitable trade.</p>
             <div class="course-footer">
-              <a href="contact.html" class="enroll-link">Enroll Now →</a>
+              <span class="course-price">$99</span>
+              <a href="#" class="enroll-link" onclick="openCryptoPay('Bitcoin Beginner Bootcamp','$99',99); return false;">Enroll Now →</a>
             </div>
           </div>
         </div>
@@ -97,7 +98,10 @@
           <div class="course-body">
             <h3>Chart Masterclass</h3>
             <p>Master candlestick patterns, key indicators, and execution entry/exit strategies used by pro traders.</p>
-            <a href="contact.html" class="btn-enroll" style="margin-top: 10px;">Enroll Now</a>
+            <div class="course-footer">
+              <span class="course-price">$199</span>
+              <a href="#" class="enroll-link" onclick="openCryptoPay('Chart Masterclass','$199',199); return false;">Enroll Now →</a>
+            </div>
           </div>
         </div>
         
@@ -111,7 +115,8 @@
             <h3>DeFi Deep Dive</h3>
             <p>Explore yield farming, liquidity pools, and passive income strategies in the DeFi ecosystem.</p>
             <div class="course-footer">
-              <a href="contact.html" class="enroll-link">Enroll Now →</a>
+              <span class="course-price">$179</span>
+              <a href="#" class="enroll-link" onclick="openCryptoPay('DeFi Deep Dive','$179',179); return false;">Enroll Now →</a>
             </div>
           </div>
         </div>
@@ -126,7 +131,8 @@
             <h3>Trading Strategy Mastery</h3>
             <p>Designed for active traders ready to build consistent, rule-based, and profitable trading strategies.</p>
             <div class="course-footer">
-              <a href="contact.html" class="enroll-link">Enroll Now →</a>
+              <span class="course-price">$249</span>
+              <a href="#" class="enroll-link" onclick="openCryptoPay('Trading Strategy Mastery','$249',249); return false;">Enroll Now →</a>
             </div>
           </div>
         </div>
@@ -141,7 +147,10 @@
           <div class="course-body">
             <h3>Bullets and Security</h3>
             <p>Learn to manage, back up, and secure your digital assets safely against hacks, phishing, and scams.</p>
-            <a href="contact.html" class="btn-enroll" style="margin-top: 10px;">Enroll Now</a>
+            <div class="course-footer">
+              <span class="course-price">$149</span>
+              <a href="#" class="enroll-link" onclick="openCryptoPay('Bullets and Security','$149',149); return false;">Enroll Now →</a>
+            </div>
           </div>
         </div>
         
@@ -155,7 +164,8 @@
             <h3>Advanced Chain Build</h3>
             <p>Designed for building scalable, high-throughput, and production-ready blockchain systems from scratch.</p>
             <div class="course-footer">
-              <a href="contact.html" class="enroll-link">Enroll Now →</a>
+              <span class="course-price">$349</span>
+              <a href="#" class="enroll-link" onclick="openCryptoPay('Advanced Chain Build','$349',349); return false;">Enroll Now →</a>
             </div>
           </div>
         </div>
@@ -178,7 +188,10 @@
               <div class="module-tag">🆔 Digital Identity</div>
               <div class="module-tag">🏦 Tokenization</div>
             </div>
-            <a href="contact.html" class="btn-enroll" style="margin-top: 10px;">Enroll Now</a>
+            <div class="course-footer">
+              <span class="course-price">$129</span>
+              <a href="#" class="enroll-link" onclick="openCryptoPay('Blockchain Fundamentals','$129',129); return false;">Enroll Now →</a>
+            </div>
           </div>
         </div>
       </div>
@@ -383,6 +396,89 @@
       </div>
     </div>
   </footer>
+
+  <!-- Blockchain Payment Gateway Modal -->
+  <div class="crypto-pay-overlay" id="cryptoPayOverlay">
+    <div class="crypto-pay-modal">
+      <button class="crypto-pay-close" id="cryptoPayClose">✕</button>
+      <div class="pay-progress-steps" id="payProgressSteps">
+        <div class="progress-step" data-step="0"><span>1</span> Register</div>
+        <div class="progress-step active" data-step="1"><span>2</span> Payment</div>
+        <div class="progress-step" data-step="2"><span>3</span> Confirm</div>
+        <div class="progress-step" data-step="3"><span>4</span> Success</div>
+      </div>
+      <div class="pay-step" id="payStep0" style="display:none;">
+        <div class="pay-header"><div class="pay-icon">📝</div><h3>Register for Enrollment</h3><p>Fill in your details to proceed to payment</p></div>
+        <div class="pay-plan-summary" id="payPlanSummaryReg"><div class="pay-plan-name" id="payPlanNameReg">Course</div><div class="pay-plan-price" id="payPlanPriceReg">$0</div></div>
+        <form class="reg-form" id="regForm">
+          <div class="reg-field"><label for="regName">Full Name *</label><input type="text" id="regName" placeholder="Enter your full name" required></div>
+          <div class="reg-field"><label for="regEmail">Email Address *</label><input type="email" id="regEmail" placeholder="you@example.com" required></div>
+          <div class="reg-field"><label for="regPhone">Phone Number *</label><input type="tel" id="regPhone" placeholder="+91 98765 43210" required></div>
+          <div class="reg-terms"><input type="checkbox" id="regTerms" required><label for="regTerms">I agree to the <a href="#" style="color:var(--color-primary);">Terms</a> and <a href="#" style="color:var(--color-primary);">Privacy Policy</a></label></div>
+          <button type="submit" class="btn btn-primary pay-confirm-btn">Continue to Payment →</button>
+        </form>
+      </div>
+      <div class="pay-step" id="payStep1">
+        <div class="pay-header"><div class="pay-icon">⛓️</div><h3>Blockchain Payment Gateway</h3><p>Secure, decentralized, and tamper-proof transactions</p></div>
+        <div class="pay-plan-summary"><div class="pay-plan-name" id="payPlanName">Course</div><div class="pay-plan-price" id="payPlanPrice">$0</div></div>
+        <div class="pay-crypto-selector">
+          <label>Select Cryptocurrency</label>
+          <div class="pay-coins">
+            <button class="pay-coin active" data-coin="BTC" id="coinBTC"><span class="coin-icon">₿</span><span class="coin-name">Bitcoin</span><span class="coin-ticker">BTC</span></button>
+            <button class="pay-coin" data-coin="ETH" id="coinETH"><span class="coin-icon">Ξ</span><span class="coin-name">Ethereum</span><span class="coin-ticker">ETH</span></button>
+            <button class="pay-coin" data-coin="USDT" id="coinUSDT"><span class="coin-icon">₮</span><span class="coin-name">Tether</span><span class="coin-ticker">USDT</span></button>
+            <button class="pay-coin" data-coin="BNB" id="coinBNB"><span class="coin-icon">◆</span><span class="coin-name">BNB Chain</span><span class="coin-ticker">BNB</span></button>
+            <button class="pay-coin" data-coin="SOL" id="coinSOL"><span class="coin-icon">◎</span><span class="coin-name">Solana</span><span class="coin-ticker">SOL</span></button>
+            <button class="pay-coin" data-coin="XRP" id="coinXRP"><span class="coin-icon">✕</span><span class="coin-name">Ripple</span><span class="coin-ticker">XRP</span></button>
+          </div>
+        </div>
+        <div class="pay-other-methods"><label>Other Payment Methods</label>
+          <div class="pay-methods-grid">
+            <a href="contact.html" class="pay-method-card"><span class="method-icon">📱</span><span class="method-name">UPI</span><span class="method-desc">Google Pay, PhonePe</span></a>
+            <a href="contact.html" class="pay-method-card"><span class="method-icon">💳</span><span class="method-name">Card</span><span class="method-desc">Credit / Debit</span></a>
+            <a href="contact.html" class="pay-method-card"><span class="method-icon">🏦</span><span class="method-name">Bank</span><span class="method-desc">NEFT / IMPS</span></a>
+          </div>
+        </div>
+        <div class="pay-amount-box">
+          <div class="pay-amount-row"><span>Amount (USD)</span><span class="pay-usd" id="payUsd">$0</span></div>
+          <div class="pay-amount-row"><span>Exchange Rate</span><span class="pay-rate" id="payRate">1 BTC = $64,583</span></div>
+          <div class="pay-amount-row highlight"><span>You Pay</span><span class="pay-crypto-amount" id="payCryptoAmount">0 BTC</span></div>
+        </div>
+        <div class="pay-wallet-section"><label>Send to Wallet Address</label>
+          <div class="pay-wallet-address"><code id="payWalletAddr">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</code><button class="pay-copy-btn" id="payCopyBtn">📋</button></div>
+          <p class="pay-wallet-note">⚠️ Only send <strong id="payCoinLabel">BTC</strong> to this address.</p>
+        </div>
+        <div class="pay-security-badges"><span>🔒 256-bit Encryption</span><span>⛓️ On-Chain Verified</span><span>🛡️ Immutable Record</span></div>
+        <button class="btn btn-primary pay-confirm-btn" id="payConfirmBtn">I've Sent the Payment →</button>
+      </div>
+      <div class="pay-step" id="payStep2" style="display:none;">
+        <div class="pay-header"><div class="pay-icon confirming">⛓️</div><h3>Verifying on Blockchain</h3><p>Your transaction is being confirmed by the network</p></div>
+        <div class="bc-confirm-tracker">
+          <div class="bc-confirm-step done" id="bcStep1"><div class="bc-confirm-dot"></div><div class="bc-confirm-info"><h4>Transaction Broadcast</h4><p>Payment sent to the blockchain network</p></div><span class="bc-confirm-status">✓</span></div>
+          <div class="bc-confirm-step done" id="bcStep2"><div class="bc-confirm-dot"></div><div class="bc-confirm-info"><h4>Mempool Received</h4><p>Transaction detected in the mempool</p></div><span class="bc-confirm-status">✓</span></div>
+          <div class="bc-confirm-step active" id="bcStep3"><div class="bc-confirm-dot"></div><div class="bc-confirm-info"><h4>Block Mined</h4><p>Waiting for miner confirmation...</p></div><span class="bc-confirm-status">⏳</span></div>
+          <div class="bc-confirm-step" id="bcStep4"><div class="bc-confirm-dot"></div><div class="bc-confirm-info"><h4>1st Confirmation</h4><p>First network confirmation</p></div><span class="bc-confirm-status">○</span></div>
+          <div class="bc-confirm-step" id="bcStep5"><div class="bc-confirm-dot"></div><div class="bc-confirm-info"><h4>3 Confirmations</h4><p>Secure confirmation threshold</p></div><span class="bc-confirm-status">○</span></div>
+          <div class="bc-confirm-step" id="bcStep6"><div class="bc-confirm-dot"></div><div class="bc-confirm-info"><h4>Payment Complete</h4><p>Enrollment activated</p></div><span class="bc-confirm-status">○</span></div>
+        </div>
+        <div class="bc-tx-hash"><label>Transaction Hash</label><code id="bcTxHash">0x7f3a...pending</code></div>
+        <div class="bc-progress-bar"><div class="bc-progress-fill" id="bcProgressFill"></div></div>
+        <p class="bc-progress-label" id="bcProgressLabel">Confirming... 2 of 6 steps complete</p>
+      </div>
+      <div class="pay-step" id="payStep3" style="display:none;">
+        <div class="pay-header success"><div class="pay-icon success-icon">✓</div><h3>Payment Confirmed!</h3><p>Your blockchain transaction has been verified and recorded immutably.</p></div>
+        <div class="pay-success-details">
+          <div class="pay-success-row"><span>Course</span><span id="successPlan">Course</span></div>
+          <div class="pay-success-row"><span>Amount Paid</span><span id="successAmount">0 BTC</span></div>
+          <div class="pay-success-row"><span>Tx Hash</span><code id="successTxHash">0x7f3a...c4d2</code></div>
+          <div class="pay-success-row"><span>Block Number</span><span id="successBlock">#847,291</span></div>
+          <div class="pay-success-row"><span>Status</span><span class="pay-status-confirmed">✓ Confirmed</span></div>
+        </div>
+        <div class="pay-success-msg"><p>🎉 Your enrollment is now <strong>active</strong>. Check your email for course access details.</p></div>
+        <button class="btn btn-primary" id="payDoneBtn">Done — Start Learning</button>
+      </div>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>

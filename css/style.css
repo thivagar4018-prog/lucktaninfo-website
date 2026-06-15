@@ -866,6 +866,12 @@ header .container {
   gap: 10px;
 }
 
+.course-price {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
 .course-card.featured-card {
   border-color: rgba(241, 168, 10, 0.3);
 }
