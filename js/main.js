@@ -907,6 +907,24 @@ const CRYPTO_DATA = {
     wallet: 'TN2Yv8yrJqFGwnQbYcS3GRhPx9nFhNzKeR',
     symbol: 'USDT',
     decimals: 2
+  },
+  BNB: {
+    rate: 608,
+    wallet: 'bnb1grpf0955h0ykzq3ar5nmum7y6gdfl6lxfn46h2',
+    symbol: 'BNB',
+    decimals: 4
+  },
+  SOL: {
+    rate: 148,
+    wallet: '7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU',
+    symbol: 'SOL',
+    decimals: 3
+  },
+  XRP: {
+    rate: 0.52,
+    wallet: 'rN7d4zE3GRMRpE5bfJcYtj3K4VcfYVjZSg',
+    symbol: 'XRP',
+    decimals: 2
   }
 };
 
