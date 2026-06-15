@@ -2246,6 +2246,74 @@ textarea.form-control {
   color: #34C759;
 }
 
+/* Course Picker */
+.course-pick-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.course-pick-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: left;
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  width: 100%;
+}
+
+.course-pick-item:hover {
+  border-color: rgba(241,168,10,0.4);
+  background: rgba(241,168,10,0.05);
+  transform: translateX(4px);
+}
+
+.cpi-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cpi-level {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.cpi-level.new {
+  color: #34C759;
+}
+
+.cpi-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.cpi-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.cpi-price {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-primary);
+  white-space: nowrap;
+  padding-left: 16px;
+}
+
 /* Registration Form */
 .reg-form {
   display: flex;

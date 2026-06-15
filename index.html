@@ -42,7 +42,7 @@
           </div>
         </div>
         
-        <a href="courses.html" class="btn btn-primary btn-sm" id="navCta">Start Learning</a>
+        <a href="#" class="btn btn-primary btn-sm" id="navCta" onclick="openStartLearning(); return false;">Start Learning</a>
         <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">☰</button>
       </div>
     </div>
@@ -112,7 +112,7 @@
           <li>1-on-1 mentorship</li>
         </ul>
         <div class="hero-actions">
-          <a href="courses.html" class="btn btn-primary" id="heroPrimaryBtn">Start Learning</a>
+          <a href="#" class="btn btn-primary" id="heroPrimaryBtn" onclick="openStartLearning(); return false;">Start Learning</a>
           <a href="what-we-do.html" class="btn btn-outline" id="heroSecondaryBtn">Watch Video</a>
         </div>
       </div>
@@ -689,10 +689,51 @@
       <button class="crypto-pay-close" id="cryptoPayClose">✕</button>
       <!-- Step Progress Indicator -->
       <div class="pay-progress-steps" id="payProgressSteps">
-        <div class="progress-step active" data-step="0"><span>1</span> Register</div>
-        <div class="progress-step" data-step="1"><span>2</span> Payment</div>
-        <div class="progress-step" data-step="2"><span>3</span> Confirm</div>
-        <div class="progress-step" data-step="3"><span>4</span> Success</div>
+        <div class="progress-step" data-step="courses"><span>1</span> Courses</div>
+        <div class="progress-step" data-step="0"><span>2</span> Register</div>
+        <div class="progress-step" data-step="1"><span>3</span> Payment</div>
+        <div class="progress-step" data-step="2"><span>4</span> Confirm</div>
+        <div class="progress-step" data-step="3"><span>5</span> Success</div>
+      </div>
+
+      <!-- Step: Course Selection -->
+      <div class="pay-step" id="payStepCourses" style="display:none;">
+        <div class="pay-header">
+          <div class="pay-icon">📚</div>
+          <h3>Choose Your Course</h3>
+          <p>Select a course to enroll in</p>
+        </div>
+
+        <div class="course-pick-list">
+          <button class="course-pick-item" onclick="selectCourseAndProceed('Bitcoin Beginner Bootcamp','$99',99)">
+            <div class="cpi-info"><span class="cpi-level">Beginner</span><span class="cpi-name">Bitcoin Beginner Bootcamp</span><span class="cpi-desc">BTC fundamentals, wallets, charts</span></div>
+            <div class="cpi-price">$99</div>
+          </button>
+          <button class="course-pick-item" onclick="selectCourseAndProceed('Chart Masterclass','$199',199)">
+            <div class="cpi-info"><span class="cpi-level">Intermediate</span><span class="cpi-name">Chart Masterclass</span><span class="cpi-desc">Candlestick patterns, indicators</span></div>
+            <div class="cpi-price">$199</div>
+          </button>
+          <button class="course-pick-item" onclick="selectCourseAndProceed('DeFi Deep Dive','$179',179)">
+            <div class="cpi-info"><span class="cpi-level">Intermediate</span><span class="cpi-name">DeFi Deep Dive</span><span class="cpi-desc">Yield farming, liquidity pools</span></div>
+            <div class="cpi-price">$179</div>
+          </button>
+          <button class="course-pick-item" onclick="selectCourseAndProceed('Blockchain Fundamentals','$129',129)">
+            <div class="cpi-info"><span class="cpi-level new">New</span><span class="cpi-name">Blockchain Fundamentals</span><span class="cpi-desc">Ledgers, consensus, smart contracts</span></div>
+            <div class="cpi-price">$129</div>
+          </button>
+          <button class="course-pick-item" onclick="selectCourseAndProceed('Trading Strategy Mastery','$249',249)">
+            <div class="cpi-info"><span class="cpi-level">Advanced</span><span class="cpi-name">Trading Strategy Mastery</span><span class="cpi-desc">Rule-based profitable strategies</span></div>
+            <div class="cpi-price">$249</div>
+          </button>
+          <button class="course-pick-item" onclick="selectCourseAndProceed('Bullets and Security','$149',149)">
+            <div class="cpi-info"><span class="cpi-level">Intermediate</span><span class="cpi-name">Bullets and Security</span><span class="cpi-desc">Secure digital assets, anti-phishing</span></div>
+            <div class="cpi-price">$149</div>
+          </button>
+          <button class="course-pick-item" onclick="selectCourseAndProceed('Advanced Chain Build','$349',349)">
+            <div class="cpi-info"><span class="cpi-level">Expert</span><span class="cpi-name">Advanced Chain Build</span><span class="cpi-desc">Production-ready blockchain systems</span></div>
+            <div class="cpi-price">$349</div>
+          </button>
+        </div>
       </div>
 
       <!-- Step 0: Registration Form -->

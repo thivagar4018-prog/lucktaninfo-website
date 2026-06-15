@@ -928,6 +928,50 @@ const CRYPTO_DATA = {
   }
 };
 
+function openStartLearning() {
+  const overlay = document.getElementById('cryptoPayOverlay');
+  if (!overlay) return;
+
+  // Show course selection step
+  const stepCourses = document.getElementById('payStepCourses');
+  if (stepCourses) stepCourses.style.display = 'block';
+  document.getElementById('payStep0').style.display = 'none';
+  document.getElementById('payStep1').style.display = 'none';
+  document.getElementById('payStep2').style.display = 'none';
+  document.getElementById('payStep3').style.display = 'none';
+
+  setProgressStep('courses');
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function selectCourseAndProceed(planName, priceLabel, amount) {
+  currentPayAmount = amount;
+  currentCoin = 'BTC';
+
+  // Hide course list, show registration
+  const stepCourses = document.getElementById('payStepCourses');
+  if (stepCourses) stepCourses.style.display = 'none';
+  document.getElementById('payStep0').style.display = 'block';
+
+  // Reset form
+  const form = document.getElementById('regForm');
+  if (form) form.reset();
+
+  // Fill plan info on registration and payment steps
+  document.getElementById('payPlanNameReg').textContent = planName;
+  document.getElementById('payPlanPriceReg').innerHTML = priceLabel;
+  document.getElementById('payPlanName').textContent = planName;
+  document.getElementById('payPlanPrice').innerHTML = priceLabel;
+
+  // Reset coin selector
+  document.querySelectorAll('.pay-coin').forEach(c => c.classList.remove('active'));
+  document.getElementById('coinBTC').classList.add('active');
+
+  setProgressStep('0');
+  updateCryptoAmount();
+}
+
 function openCryptoPay(planName, priceLabel, amount) {
   currentPayAmount = amount;
   currentCoin = 'BTC';
@@ -935,7 +979,9 @@ function openCryptoPay(planName, priceLabel, amount) {
   const overlay = document.getElementById('cryptoPayOverlay');
   if (!overlay) return;
 
-  // Skip registration — go straight to payment (Step 1)
+  // Skip registration — go straight to payment
+  const stepCourses = document.getElementById('payStepCourses');
+  if (stepCourses) stepCourses.style.display = 'none';
   document.getElementById('payStep0').style.display = 'none';
   document.getElementById('payStep1').style.display = 'block';
   document.getElementById('payStep2').style.display = 'none';
@@ -949,8 +995,7 @@ function openCryptoPay(planName, priceLabel, amount) {
   document.querySelectorAll('.pay-coin').forEach(c => c.classList.remove('active'));
   document.getElementById('coinBTC').classList.add('active');
 
-  // Set progress to step 1 (payment)
-  setProgressStep(1);
+  setProgressStep('1');
 
   updateCryptoAmount();
   overlay.classList.add('active');
@@ -964,7 +1009,9 @@ function openReserveSpot(planName, priceLabel, amount) {
   const overlay = document.getElementById('cryptoPayOverlay');
   if (!overlay) return;
 
-  // Start at registration form (Step 0)
+  // Start at registration form
+  const stepCourses = document.getElementById('payStepCourses');
+  if (stepCourses) stepCourses.style.display = 'none';
   document.getElementById('payStep0').style.display = 'block';
   document.getElementById('payStep1').style.display = 'none';
   document.getElementById('payStep2').style.display = 'none';
@@ -984,20 +1031,21 @@ function openReserveSpot(planName, priceLabel, amount) {
   document.querySelectorAll('.pay-coin').forEach(c => c.classList.remove('active'));
   document.getElementById('coinBTC').classList.add('active');
 
-  // Set progress to step 0 (register)
-  setProgressStep(0);
+  setProgressStep('0');
 
   updateCryptoAmount();
   overlay.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
-function setProgressStep(step) {
+function setProgressStep(stepKey) {
+  const STEP_ORDER = ['courses', '0', '1', '2', '3'];
+  const activeIndex = STEP_ORDER.indexOf(String(stepKey));
   const steps = document.querySelectorAll('.progress-step');
   steps.forEach((el, i) => {
     el.classList.remove('active', 'done');
-    if (i < step) el.classList.add('done');
-    else if (i === step) el.classList.add('active');
+    if (i < activeIndex) el.classList.add('done');
+    else if (i === activeIndex) el.classList.add('active');
   });
 }
 
@@ -1053,7 +1101,7 @@ function runBlockchainConfirmation() {
       setTimeout(() => {
         document.getElementById('payStep2').style.display = 'none';
         document.getElementById('payStep3').style.display = 'block';
-        setProgressStep(3);
+        setProgressStep('3');
 
         const data = CRYPTO_DATA[currentCoin];
         const cryptoAmount = (currentPayAmount / data.rate).toFixed(data.decimals);
@@ -1141,7 +1189,7 @@ function initCryptoPayGateway() {
       // Move from Step 0 (Register) to Step 1 (Payment)
       document.getElementById('payStep0').style.display = 'none';
       document.getElementById('payStep1').style.display = 'block';
-      setProgressStep(1);
+      setProgressStep('1');
     });
   }
 
@@ -1161,7 +1209,7 @@ function initCryptoPayGateway() {
     confirmBtn.addEventListener('click', () => {
       document.getElementById('payStep1').style.display = 'none';
       document.getElementById('payStep2').style.display = 'block';
-      setProgressStep(2);
+      setProgressStep('2');
       runBlockchainConfirmation();
     });
   }
