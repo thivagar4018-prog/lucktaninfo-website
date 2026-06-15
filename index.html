@@ -522,7 +522,7 @@
             <li class="disabled">Live trading room</li>
             <li class="disabled">1-on-1 monthly audit</li>
           </ul>
-          <a href="contact.html" class="btn btn-outline btn-pricing">Get Started</a>
+          <a href="#" class="btn btn-outline btn-pricing" onclick="openCryptoPay('Starter Membership','$149/mo',149); return false;">Get Started</a>
         </div>
         
         <!-- Pro Plan -->
@@ -541,7 +541,7 @@
             <li>Priority Q&A chat access</li>
             <li class="disabled">1-on-1 monthly audit</li>
           </ul>
-          <a href="contact.html" class="btn btn-primary btn-pricing">Get Started</a>
+          <a href="#" class="btn btn-primary btn-pricing" onclick="openCryptoPay('Pro Trader Plan','$299/mo',299); return false;">Get Started</a>
         </div>
         
         <!-- Elite Plan -->
@@ -559,7 +559,7 @@
             <li>Tailored risk profiles</li>
             <li>Lifetime software licenses</li>
           </ul>
-          <a href="contact.html" class="btn btn-outline btn-pricing">Get Started</a>
+          <a href="#" class="btn btn-outline btn-pricing" onclick="openCryptoPay('Elite Advisory','$599/mo',599); return false;">Get Started</a>
         </div>
       </div>
     </div>
@@ -664,6 +664,188 @@
       <a href="courses.html" class="btn">Get Started Now</a>
     </div>
   </section>
+
+  <!-- Blockchain Payment Gateway Modal -->
+  <div class="crypto-pay-overlay" id="cryptoPayOverlay">
+    <div class="crypto-pay-modal">
+      <button class="crypto-pay-close" id="cryptoPayClose">✕</button>
+      
+      <!-- Step 1: Payment Selection -->
+      <div class="pay-step" id="payStep1">
+        <div class="pay-header">
+          <div class="pay-icon">⛓️</div>
+          <h3>Blockchain Payment Gateway</h3>
+          <p>Secure, decentralized, and tamper-proof transactions</p>
+        </div>
+
+        <div class="pay-plan-summary" id="payPlanSummary">
+          <div class="pay-plan-name" id="payPlanName">Pro Trader</div>
+          <div class="pay-plan-price" id="payPlanPrice">$299<span>/mo</span></div>
+        </div>
+
+        <div class="pay-crypto-selector">
+          <label>Select Cryptocurrency</label>
+          <div class="pay-coins">
+            <button class="pay-coin active" data-coin="BTC" id="coinBTC">
+              <span class="coin-icon">₿</span>
+              <span class="coin-name">Bitcoin</span>
+              <span class="coin-ticker">BTC</span>
+            </button>
+            <button class="pay-coin" data-coin="ETH" id="coinETH">
+              <span class="coin-icon">Ξ</span>
+              <span class="coin-name">Ethereum</span>
+              <span class="coin-ticker">ETH</span>
+            </button>
+            <button class="pay-coin" data-coin="USDT" id="coinUSDT">
+              <span class="coin-icon">₮</span>
+              <span class="coin-name">Tether</span>
+              <span class="coin-ticker">USDT</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="pay-amount-box">
+          <div class="pay-amount-row">
+            <span>Amount (USD)</span>
+            <span class="pay-usd" id="payUsd">$299.00</span>
+          </div>
+          <div class="pay-amount-row">
+            <span>Exchange Rate</span>
+            <span class="pay-rate" id="payRate">1 BTC = $64,583</span>
+          </div>
+          <div class="pay-amount-row highlight">
+            <span>You Pay</span>
+            <span class="pay-crypto-amount" id="payCryptoAmount">0.00463 BTC</span>
+          </div>
+        </div>
+
+        <div class="pay-wallet-section">
+          <label>Send to Wallet Address</label>
+          <div class="pay-wallet-address">
+            <code id="payWalletAddr">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</code>
+            <button class="pay-copy-btn" id="payCopyBtn" title="Copy address">📋</button>
+          </div>
+          <p class="pay-wallet-note">⚠️ Only send <strong id="payCoinLabel">BTC</strong> to this address. Sending other coins may result in permanent loss.</p>
+        </div>
+
+        <div class="pay-security-badges">
+          <span>🔒 256-bit Encryption</span>
+          <span>⛓️ On-Chain Verified</span>
+          <span>🛡️ Immutable Record</span>
+        </div>
+
+        <button class="btn btn-primary pay-confirm-btn" id="payConfirmBtn">I've Sent the Payment →</button>
+      </div>
+
+      <!-- Step 2: Blockchain Confirmation -->
+      <div class="pay-step" id="payStep2" style="display:none;">
+        <div class="pay-header">
+          <div class="pay-icon confirming">⛓️</div>
+          <h3>Verifying on Blockchain</h3>
+          <p>Your transaction is being confirmed by the network</p>
+        </div>
+
+        <div class="bc-confirm-tracker">
+          <div class="bc-confirm-step done" id="bcStep1">
+            <div class="bc-confirm-dot"></div>
+            <div class="bc-confirm-info">
+              <h4>Transaction Broadcast</h4>
+              <p>Payment sent to the blockchain network</p>
+            </div>
+            <span class="bc-confirm-status">✓</span>
+          </div>
+          <div class="bc-confirm-step done" id="bcStep2">
+            <div class="bc-confirm-dot"></div>
+            <div class="bc-confirm-info">
+              <h4>Mempool Received</h4>
+              <p>Transaction detected in the mempool</p>
+            </div>
+            <span class="bc-confirm-status">✓</span>
+          </div>
+          <div class="bc-confirm-step active" id="bcStep3">
+            <div class="bc-confirm-dot"></div>
+            <div class="bc-confirm-info">
+              <h4>Block Mined</h4>
+              <p>Waiting for miner confirmation...</p>
+            </div>
+            <span class="bc-confirm-status">⏳</span>
+          </div>
+          <div class="bc-confirm-step" id="bcStep4">
+            <div class="bc-confirm-dot"></div>
+            <div class="bc-confirm-info">
+              <h4>1st Confirmation</h4>
+              <p>First network confirmation</p>
+            </div>
+            <span class="bc-confirm-status">○</span>
+          </div>
+          <div class="bc-confirm-step" id="bcStep5">
+            <div class="bc-confirm-dot"></div>
+            <div class="bc-confirm-info">
+              <h4>3 Confirmations</h4>
+              <p>Secure confirmation threshold</p>
+            </div>
+            <span class="bc-confirm-status">○</span>
+          </div>
+          <div class="bc-confirm-step" id="bcStep6">
+            <div class="bc-confirm-dot"></div>
+            <div class="bc-confirm-info">
+              <h4>Payment Complete</h4>
+              <p>Enrollment activated</p>
+            </div>
+            <span class="bc-confirm-status">○</span>
+          </div>
+        </div>
+
+        <div class="bc-tx-hash">
+          <label>Transaction Hash</label>
+          <code id="bcTxHash">0x7f3a...pending</code>
+        </div>
+
+        <div class="bc-progress-bar">
+          <div class="bc-progress-fill" id="bcProgressFill"></div>
+        </div>
+        <p class="bc-progress-label" id="bcProgressLabel">Confirming... 2 of 6 steps complete</p>
+      </div>
+
+      <!-- Step 3: Success -->
+      <div class="pay-step" id="payStep3" style="display:none;">
+        <div class="pay-header success">
+          <div class="pay-icon success-icon">✓</div>
+          <h3>Payment Confirmed!</h3>
+          <p>Your blockchain transaction has been verified and recorded immutably.</p>
+        </div>
+
+        <div class="pay-success-details">
+          <div class="pay-success-row">
+            <span>Plan</span>
+            <span id="successPlan">Pro Trader</span>
+          </div>
+          <div class="pay-success-row">
+            <span>Amount Paid</span>
+            <span id="successAmount">0.00463 BTC</span>
+          </div>
+          <div class="pay-success-row">
+            <span>Tx Hash</span>
+            <code id="successTxHash">0x7f3a...c4d2</code>
+          </div>
+          <div class="pay-success-row">
+            <span>Block Number</span>
+            <span id="successBlock">#847,291</span>
+          </div>
+          <div class="pay-success-row">
+            <span>Status</span>
+            <span class="pay-status-confirmed">✓ Confirmed</span>
+          </div>
+        </div>
+
+        <div class="pay-success-msg">
+          <p>🎉 Your enrollment is now <strong>active</strong>. Check your email for login credentials and course access details.</p>
+        </div>
+
+        <button class="btn btn-primary" id="payDoneBtn">Done — Start Learning</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer Section -->
   <footer>

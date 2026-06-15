@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNewsletterForm();
   initEnrollmentModal();
   initScrollReveal();
+  initCryptoPayGateway();
 });
 
 /**
@@ -880,4 +881,216 @@ function initScrollReveal() {
     target.classList.add('reveal');
     observer.observe(target);
   });
+}
+
+/**
+ * Blockchain Payment Gateway
+ */
+let currentPayAmount = 0;
+let currentCoin = 'BTC';
+
+const CRYPTO_DATA = {
+  BTC: {
+    rate: 64583,
+    wallet: 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh',
+    symbol: 'BTC',
+    decimals: 5
+  },
+  ETH: {
+    rate: 3450,
+    wallet: '0x71C7656EC7ab88b098defB751B7401B5f6d8976F',
+    symbol: 'ETH',
+    decimals: 4
+  },
+  USDT: {
+    rate: 1,
+    wallet: 'TN2Yv8yrJqFGwnQbYcS3GRhPx9nFhNzKeR',
+    symbol: 'USDT',
+    decimals: 2
+  }
+};
+
+function openCryptoPay(planName, priceLabel, amount) {
+  currentPayAmount = amount;
+  currentCoin = 'BTC';
+
+  const overlay = document.getElementById('cryptoPayOverlay');
+  if (!overlay) return;
+
+  // Reset to step 1
+  document.getElementById('payStep1').style.display = 'block';
+  document.getElementById('payStep2').style.display = 'none';
+  document.getElementById('payStep3').style.display = 'none';
+
+  // Fill plan info
+  document.getElementById('payPlanName').textContent = planName;
+  document.getElementById('payPlanPrice').innerHTML = priceLabel.replace('/', '<span>/') + '</span>';
+
+  // Reset coin selector
+  document.querySelectorAll('.pay-coin').forEach(c => c.classList.remove('active'));
+  document.getElementById('coinBTC').classList.add('active');
+
+  updateCryptoAmount();
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function updateCryptoAmount() {
+  const data = CRYPTO_DATA[currentCoin];
+  const cryptoAmount = (currentPayAmount / data.rate).toFixed(data.decimals);
+
+  document.getElementById('payUsd').textContent = '$' + currentPayAmount.toFixed(2);
+  document.getElementById('payRate').textContent = '1 ' + data.symbol + ' = $' + data.rate.toLocaleString();
+  document.getElementById('payCryptoAmount').textContent = cryptoAmount + ' ' + data.symbol;
+  document.getElementById('payWalletAddr').textContent = data.wallet;
+  document.getElementById('payCoinLabel').textContent = data.symbol;
+}
+
+function generateTxHash() {
+  const chars = '0123456789abcdef';
+  let hash = '0x';
+  for (let i = 0; i < 64; i++) {
+    hash += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return hash;
+}
+
+function runBlockchainConfirmation() {
+  const steps = [
+    document.getElementById('bcStep1'),
+    document.getElementById('bcStep2'),
+    document.getElementById('bcStep3'),
+    document.getElementById('bcStep4'),
+    document.getElementById('bcStep5'),
+    document.getElementById('bcStep6')
+  ];
+
+  const progressFill = document.getElementById('bcProgressFill');
+  const progressLabel = document.getElementById('bcProgressLabel');
+  const txHash = generateTxHash();
+  const shortHash = txHash.slice(0, 6) + '...' + txHash.slice(-4);
+
+  // Reset all steps
+  steps.forEach(s => {
+    s.classList.remove('done', 'active');
+    s.querySelector('.bc-confirm-status').textContent = '○';
+  });
+
+  document.getElementById('bcTxHash').textContent = txHash.slice(0, 10) + '...pending';
+  progressFill.style.width = '0%';
+
+  let currentStep = 0;
+
+  function advanceStep() {
+    if (currentStep >= steps.length) {
+      // All done — show success
+      setTimeout(() => {
+        document.getElementById('payStep2').style.display = 'none';
+        document.getElementById('payStep3').style.display = 'block';
+
+        const data = CRYPTO_DATA[currentCoin];
+        const cryptoAmount = (currentPayAmount / data.rate).toFixed(data.decimals);
+        document.getElementById('successPlan').textContent = document.getElementById('payPlanName').textContent;
+        document.getElementById('successAmount').textContent = cryptoAmount + ' ' + data.symbol;
+        document.getElementById('successTxHash').textContent = shortHash;
+        document.getElementById('successBlock').textContent = '#' + (847000 + Math.floor(Math.random() * 1000)).toLocaleString();
+      }, 800);
+      return;
+    }
+
+    // Mark previous as done
+    if (currentStep > 0) {
+      steps[currentStep - 1].classList.remove('active');
+      steps[currentStep - 1].classList.add('done');
+      steps[currentStep - 1].querySelector('.bc-confirm-status').textContent = '✓';
+    }
+
+    // Mark current as active
+    steps[currentStep].classList.add('active');
+    steps[currentStep].querySelector('.bc-confirm-status').textContent = '⏳';
+
+    // Update progress
+    const pct = Math.round(((currentStep + 1) / steps.length) * 100);
+    progressFill.style.width = pct + '%';
+    progressLabel.textContent = 'Confirming... ' + (currentStep + 1) + ' of ' + steps.length + ' steps';
+
+    if (currentStep === 2) {
+      document.getElementById('bcTxHash').textContent = shortHash;
+    }
+
+    currentStep++;
+    setTimeout(advanceStep, 1200 + Math.random() * 800);
+  }
+
+  // Start first two as already done
+  steps[0].classList.add('done');
+  steps[0].querySelector('.bc-confirm-status').textContent = '✓';
+  steps[1].classList.add('done');
+  steps[1].querySelector('.bc-confirm-status').textContent = '✓';
+  progressFill.style.width = '33%';
+  progressLabel.textContent = 'Confirming... 2 of 6 steps complete';
+  currentStep = 2;
+
+  setTimeout(advanceStep, 1500);
+}
+
+function initCryptoPayGateway() {
+  const overlay = document.getElementById('cryptoPayOverlay');
+  if (!overlay) return;
+
+  const closeBtn = document.getElementById('cryptoPayClose');
+  const confirmBtn = document.getElementById('payConfirmBtn');
+  const doneBtn = document.getElementById('payDoneBtn');
+  const copyBtn = document.getElementById('payCopyBtn');
+
+  // Close modal
+  closeBtn.addEventListener('click', () => {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Coin selector
+  document.querySelectorAll('.pay-coin').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.pay-coin').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      currentCoin = btn.dataset.coin;
+      updateCryptoAmount();
+    });
+  });
+
+  // Copy wallet address
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      const addr = document.getElementById('payWalletAddr').textContent;
+      navigator.clipboard.writeText(addr).then(() => {
+        copyBtn.textContent = '✓';
+        setTimeout(() => { copyBtn.textContent = '📋'; }, 2000);
+      });
+    });
+  }
+
+  // Confirm payment — start blockchain verification
+  if (confirmBtn) {
+    confirmBtn.addEventListener('click', () => {
+      document.getElementById('payStep1').style.display = 'none';
+      document.getElementById('payStep2').style.display = 'block';
+      runBlockchainConfirmation();
+    });
+  }
+
+  // Done button
+  if (doneBtn) {
+    doneBtn.addEventListener('click', () => {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  }
 }

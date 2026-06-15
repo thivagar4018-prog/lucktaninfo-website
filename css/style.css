@@ -2102,6 +2102,486 @@ textarea.form-control {
   color: var(--color-primary);
 }
 
+/* ═══════════════════════════════════════════
+   Blockchain Payment Gateway Modal
+   ═══════════════════════════════════════════ */
+.crypto-pay-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding: 20px;
+}
+
+.crypto-pay-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.crypto-pay-modal {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  max-width: 520px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 36px 32px;
+  position: relative;
+  animation: modalSlideUp 0.3s ease-out;
+}
+
+@keyframes modalSlideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.crypto-pay-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.crypto-pay-close:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Pay Header */
+.pay-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.pay-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+.pay-icon.confirming {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.pay-icon.success-icon {
+  width: 56px; height: 56px;
+  background: rgba(52,199,89,0.15);
+  color: #34C759;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  border: 2px solid rgba(52,199,89,0.3);
+}
+
+.pay-header h3 {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.pay-header p {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.pay-header.success h3 { color: #34C759; }
+
+/* Plan Summary */
+.pay-plan-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(241,168,10,0.05);
+  border: 1px solid rgba(241,168,10,0.15);
+  border-radius: var(--border-radius-md);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+.pay-plan-name {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.pay-plan-price {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.pay-plan-price span {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* Crypto Selector */
+.pay-crypto-selector {
+  margin-bottom: 20px;
+}
+
+.pay-crypto-selector label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.pay-coins {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.pay-coin {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  padding: 14px 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-primary);
+}
+
+.pay-coin:hover {
+  border-color: rgba(241,168,10,0.3);
+}
+
+.pay-coin.active {
+  border-color: var(--color-primary);
+  background: rgba(241,168,10,0.06);
+  box-shadow: 0 0 12px rgba(241,168,10,0.1);
+}
+
+.coin-icon {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.coin-name {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.coin-ticker {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* Amount Box */
+.pay-amount-box {
+  background: rgba(0,0,0,0.3);
+  border-radius: var(--border-radius-md);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.pay-amount-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.pay-amount-row + .pay-amount-row {
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.pay-amount-row.highlight {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.pay-crypto-amount {
+  color: var(--color-primary);
+}
+
+/* Wallet Address */
+.pay-wallet-section {
+  margin-bottom: 20px;
+}
+
+.pay-wallet-section label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.pay-wallet-address {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  padding: 12px 14px;
+}
+
+.pay-wallet-address code {
+  flex: 1;
+  font-size: 12px;
+  word-break: break-all;
+  color: var(--text-secondary);
+  font-family: 'Outfit', monospace;
+}
+
+.pay-copy-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+  transition: var(--transition-smooth);
+}
+
+.pay-copy-btn:hover { transform: scale(1.2); }
+
+.pay-wallet-note {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.pay-wallet-note strong {
+  color: var(--color-primary);
+}
+
+/* Security Badges */
+.pay-security-badges {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.pay-security-badges span {
+  font-size: 11px;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 100px;
+  padding: 5px 12px;
+}
+
+/* Confirm Button */
+.pay-confirm-btn {
+  width: 100%;
+  font-size: 15px;
+  padding: 16px;
+}
+
+/* ── Step 2: Blockchain Confirmation Tracker ── */
+.bc-confirm-tracker {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 24px;
+}
+
+.bc-confirm-step {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  opacity: 0.35;
+  transition: all 0.4s ease;
+}
+
+.bc-confirm-step.done {
+  opacity: 1;
+}
+
+.bc-confirm-step.active {
+  opacity: 1;
+}
+
+.bc-confirm-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--border-color);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.bc-confirm-step.done .bc-confirm-dot {
+  background: #34C759;
+  box-shadow: 0 0 8px rgba(52,199,89,0.4);
+}
+
+.bc-confirm-step.active .bc-confirm-dot {
+  background: var(--color-primary);
+  box-shadow: 0 0 8px rgba(241,168,10,0.4);
+  animation: pulse-dot 1.5s infinite;
+}
+
+.bc-confirm-info {
+  flex: 1;
+}
+
+.bc-confirm-info h4 {
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.bc-confirm-info p {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.bc-confirm-status {
+  font-size: 14px;
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+}
+
+.bc-confirm-step.done .bc-confirm-status {
+  color: #34C759;
+}
+
+.bc-confirm-step.active .bc-confirm-status {
+  color: var(--color-primary);
+}
+
+/* Tx Hash */
+.bc-tx-hash {
+  margin-bottom: 20px;
+}
+
+.bc-tx-hash label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.bc-tx-hash code {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-family: 'Outfit', monospace;
+}
+
+/* Progress Bar */
+.bc-progress-bar {
+  height: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.bc-progress-fill {
+  height: 100%;
+  width: 33%;
+  background: var(--gradient-gold);
+  border-radius: 10px;
+  transition: width 0.6s ease;
+}
+
+.bc-progress-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ── Step 3: Success ── */
+.pay-success-details {
+  background: rgba(0,0,0,0.3);
+  border-radius: var(--border-radius-md);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.pay-success-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.pay-success-row + .pay-success-row {
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.pay-success-row code {
+  font-size: 12px;
+  font-family: 'Outfit', monospace;
+  color: var(--text-muted);
+}
+
+.pay-status-confirmed {
+  color: #34C759;
+  font-weight: 700;
+}
+
+.pay-success-msg {
+  text-align: center;
+  background: rgba(52,199,89,0.06);
+  border: 1px solid rgba(52,199,89,0.15);
+  border-radius: var(--border-radius-md);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.pay-success-msg p {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.pay-success-msg strong {
+  color: #34C759;
+}
+
+#payDoneBtn {
+  width: 100%;
+}
+
 /* Responsiveness / Mobile Viewports */
 @media (max-width: 1024px) {
   .split-showcase, .contact-form-section {
