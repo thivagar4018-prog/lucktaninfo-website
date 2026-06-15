@@ -525,99 +525,67 @@ header .container {
   overflow: hidden;
 }
 
-/* ── Single Cycling Hero Words ── */
-.hero-cycle-single {
+/* ── Cycling Two-Word Pairs ── */
+.hero-cycle-container {
   position: relative;
   display: block;
-  height: 1.2em;
+  height: 2.2em;
   overflow: hidden;
 }
 
-/* All words stacked in same position */
-.hero-word {
+/* Each pair holds two stacked words */
+.hero-pair {
   position: absolute;
   left: 0; top: 0;
-  display: block;
-  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(50px);
   filter: blur(6px);
 }
 
+.hero-pair span {
+  display: block;
+  line-height: 1.1;
+}
+
 /*
-  Total cycle = 9s, 6 words → 1.5s per word
-  Each word: 0%→fade in, hold, fade out
-  word-0: 0% - 16.67%
-  word-1: 16.67% - 33.33%
-  word-2: 33.33% - 50%
-  word-3: 50% - 66.67%
-  word-4: 66.67% - 83.33%
-  word-5: 83.33% - 100%
+  3 pairs, total cycle = 9s → 3s per pair
+  Pair 0: 0% - 33.33%
+  Pair 1: 33.33% - 66.67%
+  Pair 2: 66.67% - 100%
 */
 
-.hero-cycle-single .hero-word:nth-child(1) { animation: wordShow0 9s ease-in-out infinite; }
-.hero-cycle-single .hero-word:nth-child(2) { animation: wordShow1 9s ease-in-out infinite; }
-.hero-cycle-single .hero-word:nth-child(3) { animation: wordShow2 9s ease-in-out infinite; }
-.hero-cycle-single .hero-word:nth-child(4) { animation: wordShow3 9s ease-in-out infinite; }
-.hero-cycle-single .hero-word:nth-child(5) { animation: wordShow4 9s ease-in-out infinite; }
-.hero-cycle-single .hero-word:nth-child(6) { animation: wordShow5 9s ease-in-out infinite; }
+.hero-pair:nth-child(1) { animation: pairShow0 9s ease-in-out infinite; }
+.hero-pair:nth-child(2) { animation: pairShow1 9s ease-in-out infinite; }
+.hero-pair:nth-child(3) { animation: pairShow2 9s ease-in-out infinite; }
 
-/* Word 1: Master (0% – 16.67%) */
-@keyframes wordShow0 {
-  0%    { opacity: 0; transform: translateY(40px); filter: blur(6px); }
-  2%    { opacity: 1; transform: translateY(0);    filter: blur(0); }
-  14%   { opacity: 1; transform: translateY(0);    filter: blur(0); }
-  17%   { opacity: 0; transform: translateY(-40px); filter: blur(6px); }
+/* Pair 1: Master / Bitcoin. */
+@keyframes pairShow0 {
+  0%    { opacity: 0; transform: translateY(50px);  filter: blur(6px); }
+  3%    { opacity: 1; transform: translateY(0);     filter: blur(0); }
+  30%   { opacity: 1; transform: translateY(0);     filter: blur(0); }
+  35%   { opacity: 0; transform: translateY(-50px); filter: blur(6px); }
   100%  { opacity: 0; }
 }
 
-/* Word 2: Bitcoin. (16.67% – 33.33%) */
-@keyframes wordShow1 {
+/* Pair 2: Build / Wealth. */
+@keyframes pairShow1 {
   0%    { opacity: 0; }
-  15%   { opacity: 0; transform: translateY(40px); filter: blur(6px); }
-  19%   { opacity: 1; transform: translateY(0);    filter: blur(0); }
-  31%   { opacity: 1; transform: translateY(0);    filter: blur(0); }
-  34%   { opacity: 0; transform: translateY(-40px); filter: blur(6px); }
+  31%   { opacity: 0; transform: translateY(50px);  filter: blur(6px); }
+  36%   { opacity: 1; transform: translateY(0);     filter: blur(0); }
+  63%   { opacity: 1; transform: translateY(0);     filter: blur(0); }
+  68%   { opacity: 0; transform: translateY(-50px); filter: blur(6px); }
   100%  { opacity: 0; }
 }
 
-/* Word 3: Build (33.33% – 50%) */
-@keyframes wordShow2 {
+/* Pair 3: Trade / Smarter. */
+@keyframes pairShow2 {
   0%    { opacity: 0; }
-  32%   { opacity: 0; transform: translateY(40px); filter: blur(6px); }
-  36%   { opacity: 1; transform: translateY(0);    filter: blur(0); }
-  47%   { opacity: 1; transform: translateY(0);    filter: blur(0); }
-  50%   { opacity: 0; transform: translateY(-40px); filter: blur(6px); }
-  100%  { opacity: 0; }
-}
-
-/* Word 4: Wealth. (50% – 66.67%) */
-@keyframes wordShow3 {
-  0%    { opacity: 0; }
-  48%   { opacity: 0; transform: translateY(40px); filter: blur(6px); }
-  52%   { opacity: 1; transform: translateY(0);    filter: blur(0); }
-  64%   { opacity: 1; transform: translateY(0);    filter: blur(0); }
-  67%   { opacity: 0; transform: translateY(-40px); filter: blur(6px); }
-  100%  { opacity: 0; }
-}
-
-/* Word 5: Trade (66.67% – 83.33%) */
-@keyframes wordShow4 {
-  0%    { opacity: 0; }
-  65%   { opacity: 0; transform: translateY(40px); filter: blur(6px); }
-  69%   { opacity: 1; transform: translateY(0);    filter: blur(0); }
-  81%   { opacity: 1; transform: translateY(0);    filter: blur(0); }
-  84%   { opacity: 0; transform: translateY(-40px); filter: blur(6px); }
-  100%  { opacity: 0; }
-}
-
-/* Word 6: Smarter. (83.33% – 100%) */
-@keyframes wordShow5 {
-  0%    { opacity: 0; }
-  82%   { opacity: 0; transform: translateY(40px); filter: blur(6px); }
-  86%   { opacity: 1; transform: translateY(0);    filter: blur(0); }
-  97%   { opacity: 1; transform: translateY(0);    filter: blur(0); }
-  100%  { opacity: 0; transform: translateY(-40px); filter: blur(6px); }
+  64%   { opacity: 0; transform: translateY(50px);  filter: blur(6px); }
+  69%   { opacity: 1; transform: translateY(0);     filter: blur(0); }
+  96%   { opacity: 1; transform: translateY(0);     filter: blur(0); }
+  100%  { opacity: 0; transform: translateY(-50px); filter: blur(6px); }
 }
 
 /* ── White text ── */
@@ -636,7 +604,14 @@ header .container {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: goldShimmer 3s ease-in-out infinite;
   text-shadow: none;
+}
+
+@keyframes goldShimmer {
+  0%   { background-position: 100% 50%; }
+  50%  { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
 
 /* ── Underline on "Smarter." ── */
