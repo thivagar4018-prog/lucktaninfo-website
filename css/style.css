@@ -310,9 +310,43 @@ header .container {
 .hero {
   padding: 70px 0 50px;
   position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 70%;
+  height: 140%;
+  background: radial-gradient(ellipse at center, rgba(241,168,10,0.06) 0%, transparent 70%);
+  animation: heroGlowPulse 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  right: -15%;
+  width: 50%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(255,215,0,0.04) 0%, transparent 70%);
+  animation: heroGlowPulse 8s ease-in-out 2s infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes heroGlowPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
 }
 
 .hero .container {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -348,7 +382,7 @@ header .container {
   max-width: 500px;
 }
 
-/* Custom Stacked Hero Title and Checklist to match original Landing Page design */
+/* Custom Stacked Hero Title — Animated Professional */
 .hero-title-stacked {
   font-size: 72px !important;
   font-weight: 800;
@@ -356,10 +390,163 @@ header .container {
   margin-bottom: 30px !important;
   text-transform: none;
   letter-spacing: -1.5px;
+  overflow: hidden;
 }
 
-.hero-title-stacked span {
-  color: var(--color-primary);
+/* Each line animates in with stagger */
+.hero-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(40px) translateZ(0);
+  filter: blur(6px);
+  animation: heroLineReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--delay) * 0.12s + 0.3s);
+}
+
+@keyframes heroLineReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* White text */
+.hero-word-white {
+  color: var(--text-primary);
+}
+
+/* Gold text with animated gradient shimmer */
+.hero-word-gold {
+  background: linear-gradient(
+    90deg,
+    #F1A80A 0%,
+    #FFD700 25%,
+    #FFA500 50%,
+    #FFD700 75%,
+    #F1A80A 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 3s ease-in-out infinite;
+  text-shadow: none;
+  position: relative;
+}
+
+@keyframes goldShimmer {
+  0% { background-position: 100% 50%; }
+  50% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Glow behind gold words */
+.hero-word-gold::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0; top: 0;
+  z-index: -1;
+  -webkit-text-fill-color: transparent;
+  filter: blur(20px);
+  opacity: 0.3;
+  background: linear-gradient(90deg, #F1A80A, #FFD700);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Animated underline on "Smarter." */
+.hero-word-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-word-underline::before {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #F1A80A, #FFD700, #FFA500);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: underlineDraw 0.6s ease forwards;
+  animation-delay: 1.2s;
+}
+
+@keyframes underlineDraw {
+  to { transform: scaleX(1); }
+}
+
+/* Animated hero badge */
+.hero-badge {
+  animation: badgeFadeIn 0.6s ease forwards;
+  opacity: 0;
+}
+
+@keyframes badgeFadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero checklist staggered fade-in */
+.hero-checklist li {
+  opacity: 0;
+  animation: checklistFadeIn 0.5s ease forwards;
+}
+
+.hero-checklist li:nth-child(1) { animation-delay: 1.0s; }
+.hero-checklist li:nth-child(2) { animation-delay: 1.1s; }
+.hero-checklist li:nth-child(3) { animation-delay: 1.2s; }
+.hero-checklist li:nth-child(4) { animation-delay: 1.3s; }
+.hero-checklist li:nth-child(5) { animation-delay: 1.4s; }
+
+@keyframes checklistFadeIn {
+  0% { opacity: 0; transform: translateX(-15px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* Hero CTA buttons entrance */
+.hero-actions {
+  opacity: 0;
+  animation: ctaSlideUp 0.6s ease forwards;
+  animation-delay: 1.5s;
+}
+
+@keyframes ctaSlideUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero avatar float animation */
+.hero-avatar-wrapper img {
+  animation: avatarFloat 4s ease-in-out infinite;
+}
+
+@keyframes avatarFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Hero stat cards entrance */
+.hero-stat-card-inline {
+  opacity: 0;
+  animation: statCardReveal 0.5s ease forwards;
+}
+
+.hero-cards-row .hero-stat-card-inline:nth-child(1) { animation-delay: 0.8s; }
+.hero-cards-row .hero-stat-card-inline:nth-child(2) { animation-delay: 1.0s; }
+
+@keyframes statCardReveal {
+  0% { opacity: 0; transform: translateY(15px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .hero-checklist {
