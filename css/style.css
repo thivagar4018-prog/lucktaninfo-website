@@ -525,114 +525,114 @@ header .container {
   overflow: hidden;
 }
 
-/* Each line animates in one after another */
-.hero-line {
+/* ── Hero Cycling Word Pairs ── */
+.hero-cycle {
+  position: relative;
   display: block;
+  height: 1.1em;
+  overflow: hidden;
   opacity: 0;
-  transform: translateY(50px) translateZ(0);
-  filter: blur(8px);
-  animation: heroLineReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: cycleRowReveal 0.5s ease forwards;
+  animation-delay: var(--cycle-delay);
 }
 
-/* 0.5s gap between each word — fully appears before next starts */
-.hero-line:nth-child(1) { animation-delay: 0.3s; }
-.hero-line:nth-child(2) { animation-delay: 0.9s; }
-.hero-line:nth-child(3) { animation-delay: 1.5s; }
-.hero-line:nth-child(4) { animation-delay: 2.1s; }
-.hero-line:nth-child(5) { animation-delay: 2.7s; }
-.hero-line:nth-child(6) { animation-delay: 3.3s; }
-
-@keyframes heroLineReveal {
-  0% {
-    opacity: 0;
-    transform: translateY(50px);
-    filter: blur(8px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
+@keyframes cycleRowReveal {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-/* White text with continuous glow pulse */
+/* Both words sit in the same space */
+.hero-word {
+  position: absolute;
+  left: 0; top: 0;
+  display: block;
+  white-space: nowrap;
+}
+
+/* Word A (gold) — visible first half of cycle */
+.hero-word-a {
+  animation: wordCycleA 4s ease-in-out infinite;
+  animation-delay: var(--cycle-delay);
+}
+
+/* Word B (white) — visible second half of cycle */
+.hero-word-b {
+  opacity: 0;
+  animation: wordCycleB 4s ease-in-out infinite;
+  animation-delay: var(--cycle-delay);
+}
+
+@keyframes wordCycleA {
+  0%   { opacity: 1; transform: translateY(0); filter: blur(0); }
+  20%  { opacity: 1; transform: translateY(0); filter: blur(0); }
+  30%  { opacity: 0; transform: translateY(-30px); filter: blur(4px); }
+  50%  { opacity: 0; transform: translateY(30px); filter: blur(4px); }
+  70%  { opacity: 0; transform: translateY(30px); filter: blur(4px); }
+  80%  { opacity: 1; transform: translateY(0); filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes wordCycleB {
+  0%   { opacity: 0; transform: translateY(30px); filter: blur(4px); }
+  20%  { opacity: 0; transform: translateY(30px); filter: blur(4px); }
+  30%  { opacity: 1; transform: translateY(0); filter: blur(0); }
+  50%  { opacity: 1; transform: translateY(0); filter: blur(0); }
+  70%  { opacity: 1; transform: translateY(0); filter: blur(0); }
+  80%  { opacity: 0; transform: translateY(-30px); filter: blur(4px); }
+  100% { opacity: 0; transform: translateY(30px); filter: blur(4px); }
+}
+
+/* ── White text style ── */
 .hero-word-white {
   color: #ffffff;
-  text-shadow: 0 0 20px rgba(255,255,255,0.1);
-  animation: whiteGlowPulse 3s ease-in-out infinite;
-  position: relative;
+  text-shadow: 0 0 20px rgba(255,255,255,0.15);
 }
 
-@keyframes whiteGlowPulse {
-  0%, 100% { text-shadow: 0 0 10px rgba(255,255,255,0.05), 0 0 40px rgba(255,255,255,0); }
-  50% { text-shadow: 0 0 20px rgba(255,255,255,0.2), 0 0 60px rgba(255,255,255,0.05); }
-}
-
-/* Gold text with animated gradient shimmer */
+/* ── Gold text with shimmer ── */
 .hero-word-gold {
   background: linear-gradient(
     90deg,
-    #F1A80A 0%,
-    #FFD700 25%,
-    #FFA500 50%,
-    #FFD700 75%,
-    #F1A80A 100%
+    #F1A80A 0%, #FFD700 25%, #FFA500 50%, #FFD700 75%, #F1A80A 100%
   );
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: goldShimmer 3s ease-in-out infinite;
+  animation: wordCycleA 4s ease-in-out infinite, goldShimmer 3s ease-in-out infinite;
+  animation-delay: var(--cycle-delay), 0s;
   text-shadow: none;
-  position: relative;
 }
 
 @keyframes goldShimmer {
-  0% { background-position: 100% 50%; }
-  50% { background-position: 0% 50%; }
+  0%   { background-position: 100% 50%; }
+  50%  { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
 }
 
-/* Glow behind gold words */
-.hero-word-gold::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0; top: 0;
-  z-index: -1;
-  -webkit-text-fill-color: transparent;
-  filter: blur(20px);
-  opacity: 0.3;
-  background: linear-gradient(90deg, #F1A80A, #FFD700);
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
-/* Animated underline on "Smarter." */
+/* ── Underline on "Smarter." ── */
 .hero-word-underline {
   position: relative;
-  display: inline-block;
+  display: block;
 }
 
 .hero-word-underline::before {
   content: '';
   position: absolute;
-  bottom: 2px;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #ffffff, rgba(255,255,255,0.6), #ffffff);
+  bottom: 4px; left: 0;
+  width: 100%; height: 4px;
+  background: linear-gradient(90deg, #fff, rgba(255,255,255,0.5), #fff);
   border-radius: 2px;
   transform: scaleX(0);
   transform-origin: left;
-  animation: underlineDraw 0.6s ease forwards;
-  animation-delay: 3.6s;
+  animation: underlineDraw 0.5s ease forwards;
+  animation-delay: 2.5s;
 }
 
 @keyframes underlineDraw {
   to { transform: scaleX(1); }
 }
 
-/* Animated hero badge */
+/* ── Hero badge ── */
 .hero-badge {
   animation: badgeFadeIn 0.6s ease forwards;
   opacity: 0;
@@ -643,28 +643,28 @@ header .container {
   100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Hero checklist staggered fade-in */
+/* ── Checklist staggered fade-in ── */
 .hero-checklist li {
   opacity: 0;
   animation: checklistFadeIn 0.5s ease forwards;
 }
 
-.hero-checklist li:nth-child(1) { animation-delay: 4.0s; }
-.hero-checklist li:nth-child(2) { animation-delay: 4.15s; }
-.hero-checklist li:nth-child(3) { animation-delay: 4.3s; }
-.hero-checklist li:nth-child(4) { animation-delay: 4.45s; }
-.hero-checklist li:nth-child(5) { animation-delay: 4.6s; }
+.hero-checklist li:nth-child(1) { animation-delay: 2.0s; }
+.hero-checklist li:nth-child(2) { animation-delay: 2.1s; }
+.hero-checklist li:nth-child(3) { animation-delay: 2.2s; }
+.hero-checklist li:nth-child(4) { animation-delay: 2.3s; }
+.hero-checklist li:nth-child(5) { animation-delay: 2.4s; }
 
 @keyframes checklistFadeIn {
   0% { opacity: 0; transform: translateX(-15px); }
   100% { opacity: 1; transform: translateX(0); }
 }
 
-/* Hero CTA buttons entrance */
+/* ── CTA buttons entrance ── */
 .hero-actions {
   opacity: 0;
   animation: ctaSlideUp 0.6s ease forwards;
-  animation-delay: 4.8s;
+  animation-delay: 2.6s;
 }
 
 @keyframes ctaSlideUp {
