@@ -935,7 +935,36 @@ function openCryptoPay(planName, priceLabel, amount) {
   const overlay = document.getElementById('cryptoPayOverlay');
   if (!overlay) return;
 
-  // Reset to step 0 (registration)
+  // Skip registration — go straight to payment (Step 1)
+  document.getElementById('payStep0').style.display = 'none';
+  document.getElementById('payStep1').style.display = 'block';
+  document.getElementById('payStep2').style.display = 'none';
+  document.getElementById('payStep3').style.display = 'none';
+
+  // Fill plan info
+  document.getElementById('payPlanName').textContent = planName;
+  document.getElementById('payPlanPrice').innerHTML = priceLabel.replace('/', '<span>/') + '</span>';
+
+  // Reset coin selector
+  document.querySelectorAll('.pay-coin').forEach(c => c.classList.remove('active'));
+  document.getElementById('coinBTC').classList.add('active');
+
+  // Set progress to step 1 (payment)
+  setProgressStep(1);
+
+  updateCryptoAmount();
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function openReserveSpot(planName, priceLabel, amount) {
+  currentPayAmount = amount;
+  currentCoin = 'BTC';
+
+  const overlay = document.getElementById('cryptoPayOverlay');
+  if (!overlay) return;
+
+  // Start at registration form (Step 0)
   document.getElementById('payStep0').style.display = 'block';
   document.getElementById('payStep1').style.display = 'none';
   document.getElementById('payStep2').style.display = 'none';
@@ -945,7 +974,7 @@ function openCryptoPay(planName, priceLabel, amount) {
   const form = document.getElementById('regForm');
   if (form) form.reset();
 
-  // Fill plan info on both registration and payment steps
+  // Fill plan info on both steps
   document.getElementById('payPlanNameReg').textContent = planName;
   document.getElementById('payPlanPriceReg').innerHTML = priceLabel.replace('/', '<span>/') + '</span>';
   document.getElementById('payPlanName').textContent = planName;
@@ -955,7 +984,7 @@ function openCryptoPay(planName, priceLabel, amount) {
   document.querySelectorAll('.pay-coin').forEach(c => c.classList.remove('active'));
   document.getElementById('coinBTC').classList.add('active');
 
-  // Set progress to step 0
+  // Set progress to step 0 (register)
   setProgressStep(0);
 
   updateCryptoAmount();
