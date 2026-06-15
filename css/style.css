@@ -525,21 +525,28 @@ header .container {
   overflow: hidden;
 }
 
-/* Each line animates in with stagger */
+/* Each line animates in one after another */
 .hero-line {
   display: block;
   opacity: 0;
-  transform: translateY(40px) translateZ(0);
-  filter: blur(6px);
-  animation: heroLineReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: calc(var(--delay) * 0.25s + 0.3s);
+  transform: translateY(50px) translateZ(0);
+  filter: blur(8px);
+  animation: heroLineReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* 0.5s gap between each word — fully appears before next starts */
+.hero-line:nth-child(1) { animation-delay: 0.3s; }
+.hero-line:nth-child(2) { animation-delay: 0.9s; }
+.hero-line:nth-child(3) { animation-delay: 1.5s; }
+.hero-line:nth-child(4) { animation-delay: 2.1s; }
+.hero-line:nth-child(5) { animation-delay: 2.7s; }
+.hero-line:nth-child(6) { animation-delay: 3.3s; }
 
 @keyframes heroLineReveal {
   0% {
     opacity: 0;
-    transform: translateY(40px);
-    filter: blur(6px);
+    transform: translateY(50px);
+    filter: blur(8px);
   }
   100% {
     opacity: 1;
@@ -618,7 +625,7 @@ header .container {
   transform: scaleX(0);
   transform-origin: left;
   animation: underlineDraw 0.6s ease forwards;
-  animation-delay: 1.8s;
+  animation-delay: 3.6s;
 }
 
 @keyframes underlineDraw {
@@ -642,11 +649,11 @@ header .container {
   animation: checklistFadeIn 0.5s ease forwards;
 }
 
-.hero-checklist li:nth-child(1) { animation-delay: 2.0s; }
-.hero-checklist li:nth-child(2) { animation-delay: 2.15s; }
-.hero-checklist li:nth-child(3) { animation-delay: 2.3s; }
-.hero-checklist li:nth-child(4) { animation-delay: 2.45s; }
-.hero-checklist li:nth-child(5) { animation-delay: 2.6s; }
+.hero-checklist li:nth-child(1) { animation-delay: 4.0s; }
+.hero-checklist li:nth-child(2) { animation-delay: 4.15s; }
+.hero-checklist li:nth-child(3) { animation-delay: 4.3s; }
+.hero-checklist li:nth-child(4) { animation-delay: 4.45s; }
+.hero-checklist li:nth-child(5) { animation-delay: 4.6s; }
 
 @keyframes checklistFadeIn {
   0% { opacity: 0; transform: translateX(-15px); }
@@ -657,7 +664,7 @@ header .container {
 .hero-actions {
   opacity: 0;
   animation: ctaSlideUp 0.6s ease forwards;
-  animation-delay: 2.8s;
+  animation-delay: 4.8s;
 }
 
 @keyframes ctaSlideUp {
