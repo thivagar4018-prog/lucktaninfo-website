@@ -1227,6 +1227,28 @@ header .container {
   width: 100%;
 }
 
+.pricing-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.pricing-actions .btn-outline {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+.pricing-actions .btn-outline:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.pricing-actions .btn-primary {
+  font-weight: 700;
+}
+
 /* Call to Action Banner */
 .cta-banner {
   background: var(--gradient-gold);
