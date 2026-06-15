@@ -42,18 +42,22 @@ function initHeroParticles() {
       this.opacity = Math.random() * 0.5 + 0.1;
       this.life = 0;
       this.maxLife = Math.random() * 400 + 200;
+      // 40% chance white, 60% gold
+      this.isWhite = Math.random() < 0.4;
+      if (this.isWhite) {
+        this.size = Math.random() * 2 + 1;
+        this.opacity = Math.random() * 0.4 + 0.15;
+      }
       this.hue = Math.random() * 30 + 35; // gold range
     }
     update() {
       this.x += this.vx;
       this.y += this.vy;
       this.life++;
-      // Fade in then out
       const progress = this.life / this.maxLife;
       if (progress < 0.1) this.currentOpacity = this.opacity * (progress / 0.1);
       else if (progress > 0.8) this.currentOpacity = this.opacity * ((1 - progress) / 0.2);
       else this.currentOpacity = this.opacity;
-      // Respawn
       if (this.life >= this.maxLife || this.y < -10 || this.x < -10 || this.x > canvas.width + 10) {
         this.reset();
         this.y = canvas.height + 10;
@@ -62,7 +66,11 @@ function initHeroParticles() {
     draw() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = `hsla(${this.hue}, 90%, 55%, ${this.currentOpacity})`;
+      if (this.isWhite) {
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.currentOpacity})`;
+      } else {
+        ctx.fillStyle = `hsla(${this.hue}, 90%, 55%, ${this.currentOpacity})`;
+      }
       ctx.fill();
     }
   }
@@ -81,7 +89,12 @@ function initHeroParticles() {
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(241, 168, 10, ${alpha})`;
+          // White connection if either particle is white
+          if (particles[i].isWhite || particles[j].isWhite) {
+            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+          } else {
+            ctx.strokeStyle = `rgba(241, 168, 10, ${alpha})`;
+          }
           ctx.lineWidth = 0.5;
           ctx.stroke();
         }

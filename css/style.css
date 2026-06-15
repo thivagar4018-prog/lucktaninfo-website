@@ -333,7 +333,7 @@ header .container {
   right: -15%;
   width: 50%;
   height: 100%;
-  background: radial-gradient(ellipse at center, rgba(255,215,0,0.04) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.03) 0%, transparent 70%);
   animation: heroGlowPulse 8s ease-in-out 2s infinite;
   pointer-events: none;
   z-index: 0;
@@ -379,14 +379,14 @@ header .container {
 
 .orb-2 {
   width: 200px; height: 200px;
-  background: radial-gradient(circle, #FFD700, transparent 70%);
+  background: radial-gradient(circle, rgba(255,255,255,0.7), transparent 70%);
   top: 60%; right: 10%;
   animation: orbDrift2 22s ease-in-out infinite;
 }
 
 .orb-3 {
   width: 150px; height: 150px;
-  background: radial-gradient(circle, #FFA500, transparent 70%);
+  background: radial-gradient(circle, rgba(255,255,255,0.5), transparent 70%);
   top: 30%; right: 30%;
   animation: orbDrift3 15s ease-in-out infinite;
 }
@@ -453,6 +453,7 @@ header .container {
   left: -100%;
   transform: rotate(-15deg);
   animation: streakSlide 8s linear infinite;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 30%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.08) 70%, transparent 100%);
 }
 
 .streak-2 {
@@ -461,6 +462,7 @@ header .container {
   transform: rotate(-12deg);
   animation: streakSlide 12s linear 3s infinite;
   opacity: 0.6;
+  background: linear-gradient(90deg, transparent 0%, rgba(241,168,10,0.12) 30%, rgba(255,215,0,0.25) 50%, rgba(241,168,10,0.12) 70%, transparent 100%);
 }
 
 .streak-3 {
@@ -469,6 +471,7 @@ header .container {
   transform: rotate(-18deg);
   animation: streakSlide 10s linear 6s infinite;
   opacity: 0.4;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 30%, rgba(255,255,255,0.18) 50%, rgba(255,255,255,0.1) 70%, transparent 100%);
 }
 
 @keyframes streakSlide {
@@ -548,9 +551,17 @@ header .container {
   }
 }
 
-/* White text */
+/* White text with continuous glow pulse */
 .hero-word-white {
-  color: var(--text-primary);
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(255,255,255,0.1);
+  animation: whiteGlowPulse 3s ease-in-out infinite;
+  position: relative;
+}
+
+@keyframes whiteGlowPulse {
+  0%, 100% { text-shadow: 0 0 10px rgba(255,255,255,0.05), 0 0 40px rgba(255,255,255,0); }
+  50% { text-shadow: 0 0 20px rgba(255,255,255,0.2), 0 0 60px rgba(255,255,255,0.05); }
 }
 
 /* Gold text with animated gradient shimmer */
