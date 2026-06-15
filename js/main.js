@@ -9,7 +9,94 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initCryptoPayGateway();
   initOTPVerification();
+  initHeroParticles();
 });
+
+/**
+ * Continuously Moving Hero Particle System
+ */
+function initHeroParticles() {
+  const canvas = document.getElementById('heroParticles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    const hero = canvas.parentElement;
+    canvas.width = hero.offsetWidth;
+    canvas.height = hero.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const PARTICLE_COUNT = 55;
+  const particles = [];
+
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.vx = (Math.random() - 0.5) * 0.4;
+      this.vy = -Math.random() * 0.3 - 0.1;
+      this.size = Math.random() * 2.5 + 0.5;
+      this.opacity = Math.random() * 0.5 + 0.1;
+      this.life = 0;
+      this.maxLife = Math.random() * 400 + 200;
+      this.hue = Math.random() * 30 + 35; // gold range
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.life++;
+      // Fade in then out
+      const progress = this.life / this.maxLife;
+      if (progress < 0.1) this.currentOpacity = this.opacity * (progress / 0.1);
+      else if (progress > 0.8) this.currentOpacity = this.opacity * ((1 - progress) / 0.2);
+      else this.currentOpacity = this.opacity;
+      // Respawn
+      if (this.life >= this.maxLife || this.y < -10 || this.x < -10 || this.x > canvas.width + 10) {
+        this.reset();
+        this.y = canvas.height + 10;
+      }
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = `hsla(${this.hue}, 90%, 55%, ${this.currentOpacity})`;
+      ctx.fill();
+    }
+  }
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+  function drawConnections() {
+    const maxDist = 100;
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < maxDist) {
+          const alpha = (1 - dist / maxDist) * 0.08;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(241, 168, 10, ${alpha})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => { p.update(); p.draw(); });
+    drawConnections();
+    requestAnimationFrame(animate);
+  }
+  animate();
+}
 
 /**
  * Real-time Bitcoin Price Fetcher
