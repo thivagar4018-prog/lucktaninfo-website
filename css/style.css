@@ -529,7 +529,7 @@ header .container {
 .hero-cycle-container {
   position: relative;
   display: block;
-  height: 2.2em;
+  height: 220px;
   overflow: hidden;
 }
 
@@ -3692,6 +3692,10 @@ textarea.form-control {
     letter-spacing: -0.3px;
     margin-bottom: 0 !important;
     line-height: 1.2 !important;
+  }
+
+  .hero-cycle-container {
+    height: 85px;
   }
 
   .hero-checklist li {
