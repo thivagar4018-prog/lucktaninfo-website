@@ -828,6 +828,23 @@ header .container {
   flex-grow: 1;
 }
 
+.course-modules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.module-tag {
+  background: rgba(241, 168, 10, 0.06);
+  border: 1px solid rgba(241, 168, 10, 0.15);
+  border-radius: 100px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
 .course-footer {
   display: flex;
   align-items: center;
