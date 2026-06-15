@@ -795,16 +795,98 @@ function initCryptoPayGateway() {
     });
   });
 
-  // Registration form submission
+  // Registration form submission with validation
   const regForm = document.getElementById('regForm');
   if (regForm) {
+    // Clear error on input
+    regForm.querySelectorAll('input, select').forEach(field => {
+      field.addEventListener('input', () => {
+        field.classList.remove('reg-error');
+        const errEl = field.parentElement.querySelector('.reg-error-msg');
+        if (errEl) errEl.remove();
+      });
+    });
+
     regForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      // Move from Step 0 (Register) to Step 1 (Payment)
+
+      // Clear previous errors
+      regForm.querySelectorAll('.reg-error').forEach(el => el.classList.remove('reg-error'));
+      regForm.querySelectorAll('.reg-error-msg').forEach(el => el.remove());
+
+      const name = document.getElementById('regName');
+      const email = document.getElementById('regEmail');
+      const phone = document.getElementById('regPhone');
+      const terms = document.getElementById('regTerms');
+      let firstError = null;
+
+      // Name validation
+      if (!name.value.trim()) {
+        showFieldError(name, 'Please enter your full name');
+        if (!firstError) firstError = name;
+      } else if (name.value.trim().length < 2) {
+        showFieldError(name, 'Name must be at least 2 characters');
+        if (!firstError) firstError = name;
+      } else if (!/^[a-zA-Z\s.'-]+$/.test(name.value.trim())) {
+        showFieldError(name, 'Name can only contain letters and spaces');
+        if (!firstError) firstError = name;
+      }
+
+      // Email validation
+      if (!email.value.trim()) {
+        showFieldError(email, 'Please enter your email address');
+        if (!firstError) firstError = email;
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+        showFieldError(email, 'Please enter a valid email address');
+        if (!firstError) firstError = email;
+      }
+
+      // Phone validation
+      const phoneDigits = phone.value.replace(/\D/g, '');
+      if (!phone.value.trim()) {
+        showFieldError(phone, 'Please enter your phone number');
+        if (!firstError) firstError = phone;
+      } else if (phoneDigits.length < 10) {
+        showFieldError(phone, 'Phone number must be at least 10 digits');
+        if (!firstError) firstError = phone;
+      }
+
+      // Terms validation
+      if (!terms.checked) {
+        const termsParent = terms.closest('.reg-terms');
+        if (termsParent && !termsParent.querySelector('.reg-error-msg')) {
+          const errMsg = document.createElement('span');
+          errMsg.className = 'reg-error-msg';
+          errMsg.textContent = 'You must accept the terms';
+          termsParent.appendChild(errMsg);
+        }
+        if (!firstError) firstError = terms;
+      }
+
+      // If errors, shake and focus first error
+      if (firstError) {
+        firstError.focus();
+        const parent = firstError.closest('.reg-field') || firstError.closest('.reg-terms');
+        if (parent) {
+          parent.classList.add('reg-shake');
+          setTimeout(() => parent.classList.remove('reg-shake'), 500);
+        }
+        return;
+      }
+
+      // All valid — proceed to payment
       document.getElementById('payStep0').style.display = 'none';
       document.getElementById('payStep1').style.display = 'block';
       setProgressStep('1');
     });
+  }
+
+  function showFieldError(field, msg) {
+    field.classList.add('reg-error');
+    const errMsg = document.createElement('span');
+    errMsg.className = 'reg-error-msg';
+    errMsg.textContent = msg;
+    field.parentElement.appendChild(errMsg);
   }
 
   // Copy wallet address

@@ -2396,6 +2396,38 @@ textarea.form-control {
   cursor: pointer;
 }
 
+/* Registration Validation Errors */
+.reg-error {
+  border-color: #FF3B30 !important;
+  box-shadow: 0 0 0 3px rgba(255,59,48,0.15) !important;
+}
+
+.reg-error-msg {
+  display: block;
+  font-size: 11px;
+  color: #FF3B30;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.reg-terms .reg-error-msg {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+}
+
+@keyframes regShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.reg-shake {
+  animation: regShake 0.4s ease;
+}
+
 /* Pay Header */
 .pay-header {
   text-align: center;
