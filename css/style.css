@@ -516,12 +516,12 @@ header .container {
 
 /* Custom Stacked Hero Title — Animated Professional */
 .hero-title-stacked {
-  font-size: 72px !important;
+  font-size: 100px !important;
   font-weight: 800;
   line-height: 1.05 !important;
   margin-bottom: 30px !important;
   text-transform: none;
-  letter-spacing: -1.5px;
+  letter-spacing: -2px;
   overflow: hidden;
 }
 
@@ -529,7 +529,7 @@ header .container {
 .hero-cycle-single {
   position: relative;
   display: block;
-  height: 1.15em;
+  height: 1.2em;
   overflow: hidden;
 }
 
@@ -3713,7 +3713,7 @@ textarea.form-control {
   }
 
   .hero-title-stacked {
-    font-size: 22px !important;
+    font-size: 36px !important;
     letter-spacing: -0.3px;
     margin-bottom: 0 !important;
     line-height: 1.2 !important;
@@ -4253,7 +4253,7 @@ textarea.form-control {
   }
 
   .hero-title-stacked {
-    font-size: 32px !important;
+    font-size: 64px !important;
   }
 
   section {
