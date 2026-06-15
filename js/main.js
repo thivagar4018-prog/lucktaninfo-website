@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initScrollReveal();
   initCryptoPayGateway();
+  initOTPVerification();
 });
 
 /**
@@ -453,6 +454,210 @@ function initNewsletterForm() {
   });
 }
 
+/**
+ * Email OTP Verification System
+ */
+let generatedOTP = '';
+let emailVerified = false;
+let otpTimerInterval = null;
+
+function initOTPVerification() {
+  const sendBtn = document.getElementById('otpSendBtn');
+  const resendBtn = document.getElementById('otpResendBtn');
+  const emailInput = document.getElementById('regEmail');
+  const otpWrap = document.getElementById('otpInputWrap');
+  const otpBoxes = document.querySelectorAll('.otp-box');
+  const verifiedBadge = document.getElementById('otpVerifiedBadge');
+  const otpErrorMsg = document.getElementById('otpErrorMsg');
+
+  if (!sendBtn || !emailInput) return;
+
+  // Send OTP
+  sendBtn.addEventListener('click', () => {
+    const email = emailInput.value.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      emailInput.classList.add('reg-error');
+      showOtpError('Please enter a valid email first');
+      return;
+    }
+
+    // Generate 6-digit OTP
+    generatedOTP = String(Math.floor(100000 + Math.random() * 900000));
+    emailVerified = false;
+
+    // Lock email field
+    emailInput.readOnly = true;
+    sendBtn.textContent = 'Sent ✓';
+    sendBtn.disabled = true;
+    sendBtn.classList.add('otp-sent');
+
+    // Show OTP boxes
+    otpWrap.style.display = 'block';
+    otpBoxes[0].focus();
+
+    // Start cooldown timer
+    startOtpTimer();
+
+    // Show demo toast with OTP
+    showOtpToast(email, generatedOTP);
+
+    hideOtpError();
+  });
+
+  // Resend OTP
+  if (resendBtn) {
+    resendBtn.addEventListener('click', () => {
+      generatedOTP = String(Math.floor(100000 + Math.random() * 900000));
+      otpBoxes.forEach(b => { b.value = ''; b.classList.remove('otp-correct', 'otp-wrong'); });
+      otpBoxes[0].focus();
+      startOtpTimer();
+      showOtpToast(emailInput.value.trim(), generatedOTP);
+      hideOtpError();
+    });
+  }
+
+  // OTP box navigation & auto-verify
+  otpBoxes.forEach((box, i) => {
+    box.addEventListener('input', (e) => {
+      const val = e.target.value.replace(/\D/g, '');
+      e.target.value = val.slice(0, 1);
+      box.classList.remove('otp-wrong');
+
+      if (val && i < otpBoxes.length - 1) {
+        otpBoxes[i + 1].focus();
+      }
+
+      // Check if all 6 digits entered
+      const entered = Array.from(otpBoxes).map(b => b.value).join('');
+      if (entered.length === 6) {
+        verifyOTP(entered);
+      }
+    });
+
+    box.addEventListener('keydown', (e) => {
+      if (e.key === 'Backspace' && !box.value && i > 0) {
+        otpBoxes[i - 1].focus();
+      }
+    });
+
+    // Paste support
+    box.addEventListener('paste', (e) => {
+      e.preventDefault();
+      const pasted = (e.clipboardData.getData('text') || '').replace(/\D/g, '').slice(0, 6);
+      if (pasted.length === 6) {
+        pasted.split('').forEach((digit, idx) => {
+          if (otpBoxes[idx]) otpBoxes[idx].value = digit;
+        });
+        otpBoxes[5].focus();
+        verifyOTP(pasted);
+      }
+    });
+  });
+
+  // Change email (unlock)
+  if (emailInput) {
+    emailInput.addEventListener('dblclick', () => {
+      if (emailInput.readOnly && !emailVerified) {
+        emailInput.readOnly = false;
+        sendBtn.textContent = 'Send OTP';
+        sendBtn.disabled = false;
+        sendBtn.classList.remove('otp-sent');
+        otpWrap.style.display = 'none';
+        otpBoxes.forEach(b => { b.value = ''; b.classList.remove('otp-correct', 'otp-wrong'); });
+        clearInterval(otpTimerInterval);
+      }
+    });
+  }
+
+  function verifyOTP(entered) {
+    if (entered === generatedOTP) {
+      // Success
+      emailVerified = true;
+      otpBoxes.forEach(b => b.classList.add('otp-correct'));
+      verifiedBadge.style.display = 'inline-flex';
+      otpWrap.style.display = 'none';
+      sendBtn.textContent = 'Verified ✓';
+      sendBtn.classList.add('otp-verified');
+      clearInterval(otpTimerInterval);
+      hideOtpError();
+    } else {
+      // Failure
+      otpBoxes.forEach(b => b.classList.add('otp-wrong'));
+      showOtpError('Invalid OTP. Please try again.');
+      setTimeout(() => {
+        otpBoxes.forEach(b => { b.value = ''; b.classList.remove('otp-wrong'); });
+        otpBoxes[0].focus();
+      }, 800);
+    }
+  }
+
+  function startOtpTimer() {
+    let seconds = 60;
+    const timerEl = document.getElementById('otpTimer');
+    const resend = document.getElementById('otpResendBtn');
+    if (resend) resend.disabled = true;
+
+    clearInterval(otpTimerInterval);
+    otpTimerInterval = setInterval(() => {
+      seconds--;
+      if (timerEl) timerEl.textContent = `Resend in ${seconds}s`;
+      if (seconds <= 0) {
+        clearInterval(otpTimerInterval);
+        if (timerEl) timerEl.textContent = '';
+        if (resend) resend.disabled = false;
+      }
+    }, 1000);
+    if (timerEl) timerEl.textContent = `Resend in ${seconds}s`;
+  }
+
+  function showOtpError(msg) {
+    if (otpErrorMsg) { otpErrorMsg.textContent = msg; otpErrorMsg.style.display = 'block'; }
+  }
+  function hideOtpError() {
+    if (otpErrorMsg) { otpErrorMsg.textContent = ''; otpErrorMsg.style.display = 'none'; }
+  }
+}
+
+function showOtpToast(email, code) {
+  // Remove existing toast
+  const old = document.getElementById('otpDemoToast');
+  if (old) old.remove();
+
+  const toast = document.createElement('div');
+  toast.id = 'otpDemoToast';
+  toast.className = 'otp-demo-toast';
+  toast.innerHTML = `
+    <div class="otp-toast-header">
+      <span>📧 OTP Sent (Demo)</span>
+      <button onclick="this.parentElement.parentElement.remove()">✕</button>
+    </div>
+    <p>Sent to: <strong>${email}</strong></p>
+    <div class="otp-toast-code">${code}</div>
+    <p class="otp-toast-note">In production, this would be sent via email</p>
+  `;
+  document.body.appendChild(toast);
+
+  setTimeout(() => { if (toast.parentElement) toast.classList.add('otp-toast-fade'); }, 15000);
+  setTimeout(() => { if (toast.parentElement) toast.remove(); }, 16000);
+}
+
+// Reset OTP state when modal opens
+function resetOTPState() {
+  emailVerified = false;
+  generatedOTP = '';
+  clearInterval(otpTimerInterval);
+  const emailInput = document.getElementById('regEmail');
+  const sendBtn = document.getElementById('otpSendBtn');
+  const otpWrap = document.getElementById('otpInputWrap');
+  const badge = document.getElementById('otpVerifiedBadge');
+  const boxes = document.querySelectorAll('.otp-box');
+  if (emailInput) emailInput.readOnly = false;
+  if (sendBtn) { sendBtn.textContent = 'Send OTP'; sendBtn.disabled = false; sendBtn.classList.remove('otp-sent', 'otp-verified'); }
+  if (otpWrap) otpWrap.style.display = 'none';
+  if (badge) badge.style.display = 'none';
+  boxes.forEach(b => { b.value = ''; b.classList.remove('otp-correct', 'otp-wrong'); });
+}
+
 
 /**
  * Scroll Reveal Animations using IntersectionObserver
@@ -571,6 +776,7 @@ function selectCourseAndProceed(planName, priceLabel, amount) {
   // Reset form
   const form = document.getElementById('regForm');
   if (form) form.reset();
+  resetOTPState();
 
   // Fill plan info on registration and payment steps
   document.getElementById('payPlanNameReg').textContent = planName;
@@ -634,6 +840,7 @@ function openReserveSpot(planName, priceLabel, amount) {
   // Reset form
   const form = document.getElementById('regForm');
   if (form) form.reset();
+  resetOTPState();
 
   // Fill plan info on both steps
   document.getElementById('payPlanNameReg').textContent = planName;
@@ -838,6 +1045,9 @@ function initCryptoPayGateway() {
         if (!firstError) firstError = email;
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
         showFieldError(email, 'Please enter a valid email address');
+        if (!firstError) firstError = email;
+      } else if (!emailVerified) {
+        showFieldError(email, 'Please verify your email with OTP');
         if (!firstError) firstError = email;
       }
 

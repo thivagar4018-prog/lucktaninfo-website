@@ -2428,6 +2428,223 @@ textarea.form-control {
   animation: regShake 0.4s ease;
 }
 
+/* OTP Verification */
+.reg-email-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.reg-email-row input {
+  flex: 1;
+}
+
+.otp-send-btn {
+  padding: 0 16px;
+  background: var(--color-primary);
+  color: #000;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  font-family: 'Outfit', sans-serif;
+}
+
+.otp-send-btn:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+.otp-send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.otp-send-btn.otp-sent {
+  background: rgba(52,199,89,0.15);
+  color: #34C759;
+  border: 1px solid rgba(52,199,89,0.3);
+}
+
+.otp-send-btn.otp-verified {
+  background: rgba(52,199,89,0.2);
+  color: #34C759;
+  border: 1px solid rgba(52,199,89,0.4);
+}
+
+.otp-verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #34C759;
+  margin-top: 6px;
+}
+
+.otp-input-wrap {
+  animation: fadeSlideDown 0.3s ease;
+}
+
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.otp-boxes {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.otp-box {
+  width: 44px;
+  height: 52px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.04);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  outline: none;
+  transition: all 0.2s ease;
+  font-family: 'Outfit', monospace;
+  caret-color: var(--color-primary);
+}
+
+.otp-box:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(241,168,10,0.15);
+}
+
+.otp-box.otp-correct {
+  border-color: #34C759;
+  background: rgba(52,199,89,0.08);
+  color: #34C759;
+  box-shadow: 0 0 0 3px rgba(52,199,89,0.15);
+}
+
+.otp-box.otp-wrong {
+  border-color: #FF3B30;
+  background: rgba(255,59,48,0.08);
+  color: #FF3B30;
+  box-shadow: 0 0 0 3px rgba(255,59,48,0.15);
+  animation: regShake 0.4s ease;
+}
+
+.otp-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.otp-timer {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.otp-resend-btn {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.otp-resend-btn:hover:not(:disabled) {
+  background: rgba(241,168,10,0.1);
+}
+
+.otp-resend-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* OTP Demo Toast */
+.otp-demo-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(241,168,10,0.3);
+  border-radius: 12px;
+  padding: 16px 20px;
+  z-index: 100001;
+  min-width: 280px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  animation: toastSlideIn 0.4s ease;
+  font-family: 'Outfit', sans-serif;
+  color: var(--text-primary);
+}
+
+@keyframes toastSlideIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.otp-demo-toast.otp-toast-fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.otp-toast-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.otp-toast-header button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  line-height: 1;
+}
+
+.otp-demo-toast p {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 4px 0;
+}
+
+.otp-toast-code {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 8px;
+  text-align: center;
+  color: var(--color-primary);
+  padding: 10px;
+  background: rgba(241,168,10,0.08);
+  border: 1px dashed rgba(241,168,10,0.3);
+  border-radius: 8px;
+  margin: 10px 0;
+  font-family: 'Outfit', monospace;
+}
+
+.otp-toast-note {
+  font-size: 10px !important;
+  color: var(--text-muted) !important;
+  font-style: italic;
+  text-align: center;
+}
+
 /* Pay Header */
 .pay-header {
   text-align: center;

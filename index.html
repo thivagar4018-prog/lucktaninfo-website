@@ -754,9 +754,29 @@
             <label for="regName">Full Name *</label>
             <input type="text" id="regName" placeholder="Enter your full name" required>
           </div>
-          <div class="reg-field">
+          <div class="reg-field reg-email-wrap">
             <label for="regEmail">Email Address *</label>
-            <input type="email" id="regEmail" placeholder="you@example.com" required>
+            <div class="reg-email-row">
+              <input type="email" id="regEmail" placeholder="you@example.com" required>
+              <button type="button" class="otp-send-btn" id="otpSendBtn">Send OTP</button>
+            </div>
+            <span class="otp-verified-badge" id="otpVerifiedBadge" style="display:none;">✓ Email Verified</span>
+          </div>
+          <div class="reg-field otp-input-wrap" id="otpInputWrap" style="display:none;">
+            <label>Enter 6-digit OTP sent to your email</label>
+            <div class="otp-boxes">
+              <input type="text" maxlength="1" class="otp-box" data-idx="0" inputmode="numeric" autocomplete="one-time-code">
+              <input type="text" maxlength="1" class="otp-box" data-idx="1" inputmode="numeric">
+              <input type="text" maxlength="1" class="otp-box" data-idx="2" inputmode="numeric">
+              <input type="text" maxlength="1" class="otp-box" data-idx="3" inputmode="numeric">
+              <input type="text" maxlength="1" class="otp-box" data-idx="4" inputmode="numeric">
+              <input type="text" maxlength="1" class="otp-box" data-idx="5" inputmode="numeric">
+            </div>
+            <div class="otp-actions">
+              <span class="otp-timer" id="otpTimer"></span>
+              <button type="button" class="otp-resend-btn" id="otpResendBtn" disabled>Resend OTP</button>
+            </div>
+            <span class="reg-error-msg" id="otpErrorMsg" style="display:none;"></span>
           </div>
           <div class="reg-field">
             <label for="regPhone">Phone Number *</label>
