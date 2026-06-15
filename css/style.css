@@ -505,10 +505,7 @@ header .container {
   margin-bottom: 24px;
 }
 
-.hero-content h1 span {
-  color: var(--color-primary);
-  display: block;
-}
+/* span colors now handled by .hero-word-gold and .hero-word-white */
 
 .hero-content p {
   font-size: 18px;
