@@ -1457,7 +1457,7 @@ header .container {
 }
 
 .faq-item.active .faq-answer {
-  max-height: 200px;
+  /* max-height controlled by JS */
 }
 
 .faq-item.active .faq-icon {
