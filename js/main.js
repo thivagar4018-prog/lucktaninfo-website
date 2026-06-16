@@ -447,22 +447,15 @@ function initContactForm() {
       submitBtn.innerHTML = 'Sending Message...';
       
       try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ name, email, subject, message })
-        });
+        const success = await sendToZapier('contact', { name, email, subject, message });
         
-        const result = await response.json();
-        
-        if (response.ok && result.status === 'success') {
+        if (success) {
           feedback.textContent = 'Thank you! Your message has been sent successfully. We will get back to you within 24 hours.';
           feedback.className = 'form-feedback success';
+          feedback.style.display = 'block';
           form.reset();
         } else {
-          showError(result.error || 'Failed to submit message. Please try again.');
+          showError('Failed to submit message. Please try again.');
         }
       } catch (error) {
         console.error('Contact form submission error:', error);
@@ -519,21 +512,13 @@ function initNewsletterForm() {
       submitBtn.innerHTML = '⌛';
       
       try {
-        const response = await fetch('/api/newsletter', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email })
-        });
+        const success = await sendToZapier('newsletter', { email });
         
-        const result = await response.json();
-        
-        if (response.ok && result.status === 'success') {
+        if (success) {
           showFeedback('Subscribed successfully!', 'success');
           form.reset();
         } else {
-          showFeedback(result.error || 'Subscription failed.', 'error');
+          showFeedback('Subscription failed.', 'error');
         }
       } catch (error) {
         console.error('Newsletter submission error:', error);
@@ -1184,7 +1169,15 @@ function initCryptoPayGateway() {
         return;
       }
 
-      // All valid — proceed to payment
+      // All valid — send to Zapier, then proceed to payment
+      const regData = {
+        name: name.value.trim(),
+        email: email.value.trim(),
+        phone: phone.value.trim(),
+        course: document.getElementById('payPlanName')?.textContent || 'Unknown'
+      };
+      sendToZapier('registration', regData);
+
       document.getElementById('payStep0').style.display = 'none';
       document.getElementById('payStep1').style.display = 'block';
       setProgressStep('1');
