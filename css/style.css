@@ -3663,22 +3663,22 @@ textarea.form-control {
     display: none;
   }
 
-  /* ─── Hero Section — Mobile Viewport Fit ─── */
+  /* ─── Hero Section — Mobile ─── */
   .hero {
-    padding: 20px 0 30px;
+    padding: 24px 0 36px;
     min-height: auto;
     display: block;
   }
 
   .hero .container {
-    gap: 16px;
+    gap: 20px;
     width: 100%;
   }
 
-  /* Stack vertically: graphic on top, content below */
+  /* Stack: graphic on top, content below */
   .hero-top-row {
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
     align-items: center;
     text-align: center;
   }
@@ -3703,16 +3703,17 @@ textarea.form-control {
   }
 
   .hero-graphic {
-    gap: 10px;
+    gap: 12px;
     width: 100%;
     flex-shrink: 0;
     align-items: center;
   }
 
   .hero-content .badge {
-    font-size: 9px;
-    padding: 4px 12px;
-    margin-bottom: 8px;
+    font-size: 10px;
+    padding: 5px 14px;
+    margin-bottom: 10px;
+    display: inline-block;
   }
 
   .hero-bottom-row {
@@ -3724,8 +3725,8 @@ textarea.form-control {
   }
 
   .hero-checklist {
-    margin-bottom: 14px;
-    gap: 6px;
+    margin-bottom: 16px;
+    gap: 8px;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -3751,46 +3752,51 @@ textarea.form-control {
 
   .hero-content p {
     font-size: 13px;
-    margin-bottom: 14px;
-    max-width: 100%;
+    margin-bottom: 16px;
+    max-width: 90%;
   }
 
-  /* Cycling title — mobile */
+  /* ── Cycling title — mobile ── */
   .hero-title-stacked {
-    font-size: 48px !important;
+    font-size: 44px !important;
     letter-spacing: -1px;
-    margin-bottom: 10px !important;
+    margin-bottom: 12px !important;
     line-height: 1.1 !important;
     text-align: center;
-  }
-
-  .hero-cycle-container {
-    height: 115px;
-    display: flex;
-    justify-content: center;
     width: 100%;
   }
 
+  .hero-cycle-container {
+    height: 105px;
+    width: 100%;
+    position: relative;
+  }
+
   .hero-pair {
+    left: 0 !important;
+    right: 0;
+    width: 100%;
     align-items: center;
-    left: 50% !important;
-    transform: translateX(-50%) translateY(50px);
+    text-align: center;
   }
 
   .hero-pair span {
     text-align: center;
+    width: 100%;
   }
 
+  /* ── Checklist items ── */
   .hero-checklist li {
     font-size: 12px;
     gap: 6px;
+    justify-content: center;
   }
 
   .hero-checklist li::before {
     font-size: 13px;
   }
 
-  /* Avatar smaller on mobile */
+  /* ── Avatar ── */
   .hero-avatar-wrapper {
     width: 80px;
     height: 80px;
@@ -3808,30 +3814,30 @@ textarea.form-control {
     border-width: 2px;
   }
 
-  /* Cards row — side by side, compact */
+  /* ── Cards row ── */
   .hero-cards-row {
     flex-direction: row;
-    max-width: 100%;
+    max-width: 320px;
     width: 100%;
     gap: 8px;
     justify-content: center;
+    margin: 0 auto;
   }
 
   .hero-stat-card-inline {
     width: auto;
     flex: 1;
-    max-width: 160px;
-    padding: 8px 10px;
+    padding: 10px 12px;
     font-size: 10px;
   }
 
   .hero-stat-card-inline .crypto-price-val {
-    font-size: 14px !important;
+    font-size: 15px !important;
   }
 
   .hero-stat-card-inline .badge {
-    font-size: 6px !important;
-    padding: 1px 4px !important;
+    font-size: 7px !important;
+    padding: 2px 5px !important;
   }
 
   .hero-stat-card-inline .stat-title {
@@ -3843,24 +3849,27 @@ textarea.form-control {
   }
 
   #heroLiveChart {
-    height: 22px !important;
+    height: 24px !important;
   }
 
+  /* ── CTA buttons ── */
   .hero-actions {
     gap: 10px;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
 
   .hero-actions .btn {
-    padding: 12px 24px;
-    font-size: 14px;
-    min-height: 44px;
+    padding: 14px 28px;
+    font-size: 15px;
+    min-height: 48px;
     width: 100%;
-    max-width: 280px;
+    max-width: 300px;
     text-align: center;
     justify-content: center;
+    border-radius: 12px;
   }
 
   /* ─── Section Headers ─── */
