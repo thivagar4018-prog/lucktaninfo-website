@@ -3687,12 +3687,18 @@ textarea.form-control {
     flex: none;
     width: 100%;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   .hero-top-row .hero-graphic {
     flex: none;
     order: -1;
     width: 100%;
+    display: flex;
+    flex-direction: column;
     align-items: center;
   }
 
@@ -3700,6 +3706,7 @@ textarea.form-control {
     gap: 10px;
     width: 100%;
     flex-shrink: 0;
+    align-items: center;
   }
 
   .hero-content .badge {
@@ -3711,12 +3718,17 @@ textarea.form-control {
   .hero-bottom-row {
     max-width: 100%;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .hero-checklist {
     margin-bottom: 14px;
     gap: 6px;
     align-items: center;
+    display: flex;
+    flex-direction: column;
   }
 
   .page-hero {
@@ -3756,10 +3768,17 @@ textarea.form-control {
     height: 115px;
     display: flex;
     justify-content: center;
+    width: 100%;
   }
 
   .hero-pair {
     align-items: center;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(50px);
+  }
+
+  .hero-pair span {
+    text-align: center;
   }
 
   .hero-checklist li {
