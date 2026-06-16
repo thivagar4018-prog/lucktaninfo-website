@@ -1221,3 +1221,115 @@ function initCryptoPayGateway() {
     });
   }
 }
+
+/**
+ * Payment App Selection Flow
+ * ─────────────────────────────
+ * Layer 1: Choose method (UPI, Card, Net Banking, Wallet)
+ * Layer 2: Choose specific app within that method
+ */
+
+// UPI ID to receive payments — REPLACE WITH YOUR ACTUAL UPI ID
+const MERCHANT_UPI_ID = 'yourname@upi';
+const MERCHANT_NAME = 'LucktanInfo';
+
+function getPaymentAmount() {
+  const el = document.getElementById('payCryptoAmount');
+  return el ? el.textContent.replace(/[^0-9.]/g, '') : '299';
+}
+
+function showPayApps(method) {
+  // Hide method selection, show app options
+  const methodSelect = document.getElementById('payMethodSelect');
+  const appOptions = document.getElementById('payAppOptions');
+  
+  if (methodSelect) methodSelect.style.display = 'none';
+  if (appOptions) appOptions.style.display = 'block';
+  
+  // Hide all app groups
+  document.querySelectorAll('.pay-app-group').forEach(g => g.style.display = 'none');
+  
+  // Show selected group
+  const groupMap = {
+    'upi': 'payAppsUpi',
+    'card': 'payAppsCard',
+    'netbanking': 'payAppsNetbanking',
+    'wallet': 'payAppsWallet'
+  };
+  
+  const group = document.getElementById(groupMap[method]);
+  if (group) group.style.display = 'block';
+}
+
+function backToMethods() {
+  const methodSelect = document.getElementById('payMethodSelect');
+  const appOptions = document.getElementById('payAppOptions');
+  
+  if (methodSelect) methodSelect.style.display = 'block';
+  if (appOptions) appOptions.style.display = 'none';
+}
+
+function openUpiApp(app) {
+  event.preventDefault();
+  const amount = getPaymentAmount();
+  const courseName = document.getElementById('payPlanName')?.textContent || 'Course';
+  const note = encodeURIComponent(`Payment for ${courseName} - LucktanInfo`);
+  
+  // Build UPI deep link
+  const upiBase = `upi://pay?pa=${MERCHANT_UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount}&cu=INR&tn=${note}`;
+  
+  const appLinks = {
+    'gpay': `tez://upi/pay?pa=${MERCHANT_UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount}&cu=INR&tn=${note}`,
+    'phonepe': `phonepe://pay?pa=${MERCHANT_UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount}&cu=INR&tn=${note}`,
+    'paytm': `paytmmp://pay?pa=${MERCHANT_UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount}&cu=INR&tn=${note}`,
+    'bhim': upiBase,
+    'other': upiBase
+  };
+  
+  const link = appLinks[app] || upiBase;
+  
+  // Try to open the app
+  window.location.href = link;
+  
+  // Fallback: after 2 seconds if app didn't open, show alert
+  setTimeout(() => {
+    if (document.visibilityState !== 'hidden') {
+      alert(`To pay via UPI:\n\n1. Open your UPI app\n2. Send ₹${amount} to: ${MERCHANT_UPI_ID}\n3. Add note: Payment for ${courseName}\n\nAfter payment, take a screenshot and share on our contact page.`);
+    }
+  }, 2000);
+}
+
+function openCardPayment(cardType) {
+  event.preventDefault();
+  const amount = getPaymentAmount();
+  const courseName = document.getElementById('payPlanName')?.textContent || 'Course';
+  
+  // Since there's no payment gateway integrated yet, redirect to contact
+  alert(`Card Payment for ${courseName}\n\nAmount: ₹${amount}\nCard Type: ${cardType.toUpperCase()}\n\nYou will be redirected to our contact page to complete the payment setup. Our team will send you a secure payment link.`);
+  window.location.href = 'contact.html';
+}
+
+function openNetBanking(bank) {
+  event.preventDefault();
+  const amount = getPaymentAmount();
+  const courseName = document.getElementById('payPlanName')?.textContent || 'Course';
+  
+  alert(`Net Banking Payment for ${courseName}\n\nAmount: ₹${amount}\nBank: ${bank.toUpperCase()}\n\nYou will be redirected to our contact page. Our team will share bank transfer details.`);
+  window.location.href = 'contact.html';
+}
+
+function openWallet(wallet) {
+  event.preventDefault();
+  const amount = getPaymentAmount();
+  const courseName = document.getElementById('payPlanName')?.textContent || 'Course';
+  
+  const walletNames = {
+    'paytm': 'Paytm Wallet',
+    'amazonpay': 'Amazon Pay',
+    'mobikwik': 'MobiKwik',
+    'freecharge': 'FreeCharge'
+  };
+  
+  alert(`${walletNames[wallet] || wallet} Payment for ${courseName}\n\nAmount: ₹${amount}\n\nYou will be redirected to our contact page. Our team will send you a payment link.`);
+  window.location.href = 'contact.html';
+}
