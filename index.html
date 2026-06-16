@@ -823,9 +823,9 @@
       <!-- Step 1: Payment Selection -->
       <div class="pay-step" id="payStep1" style="display:none;">
         <div class="pay-header">
-          <div class="pay-icon">⛓️</div>
-          <h3>Blockchain Payment Gateway</h3>
-          <p>Secure, decentralized, and tamper-proof transactions</p>
+          <div class="pay-icon">💳</div>
+          <h3>Secure Payment Gateway</h3>
+          <p>Choose your preferred payment method</p>
         </div>
 
         <div class="pay-plan-summary" id="payPlanSummary">
@@ -834,94 +834,54 @@
         </div>
 
         <div class="pay-crypto-selector">
-          <label>Select Cryptocurrency</label>
+          <label>Select Payment Method</label>
           <div class="pay-coins">
-            <button class="pay-coin active" data-coin="BTC" id="coinBTC">
-              <span class="coin-icon">₿</span>
-              <span class="coin-name">Bitcoin</span>
-              <span class="coin-ticker">BTC</span>
+            <button class="pay-coin active" data-coin="UPI" id="coinUPI">
+              <span class="coin-icon">📱</span>
+              <span class="coin-name">UPI</span>
+              <span class="coin-ticker">GPay / PhonePe / Paytm</span>
             </button>
-            <button class="pay-coin" data-coin="ETH" id="coinETH">
-              <span class="coin-icon">Ξ</span>
-              <span class="coin-name">Ethereum</span>
-              <span class="coin-ticker">ETH</span>
+            <button class="pay-coin" data-coin="CARD" id="coinCARD">
+              <span class="coin-icon">💳</span>
+              <span class="coin-name">Credit / Debit Card</span>
+              <span class="coin-ticker">Visa / Mastercard / RuPay</span>
             </button>
-            <button class="pay-coin" data-coin="USDT" id="coinUSDT">
-              <span class="coin-icon">₮</span>
-              <span class="coin-name">Tether</span>
-              <span class="coin-ticker">USDT</span>
+            <button class="pay-coin" data-coin="NETBANK" id="coinNETBANK">
+              <span class="coin-icon">🏦</span>
+              <span class="coin-name">Net Banking</span>
+              <span class="coin-ticker">All Major Banks</span>
             </button>
-            <button class="pay-coin" data-coin="BNB" id="coinBNB">
-              <span class="coin-icon">◆</span>
-              <span class="coin-name">BNB Chain</span>
-              <span class="coin-ticker">BNB</span>
+            <button class="pay-coin" data-coin="WALLET" id="coinWALLET">
+              <span class="coin-icon">👛</span>
+              <span class="coin-name">Wallet</span>
+              <span class="coin-ticker">Paytm / Amazon Pay</span>
             </button>
-            <button class="pay-coin" data-coin="SOL" id="coinSOL">
-              <span class="coin-icon">◎</span>
-              <span class="coin-name">Solana</span>
-              <span class="coin-ticker">SOL</span>
-            </button>
-            <button class="pay-coin" data-coin="XRP" id="coinXRP">
-              <span class="coin-icon">✕</span>
-              <span class="coin-name">Ripple</span>
-              <span class="coin-ticker">XRP</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Other Payment Methods -->
-        <div class="pay-other-methods">
-          <label>Other Payment Methods</label>
-          <div class="pay-methods-grid">
-            <a href="contact.html" class="pay-method-card">
-              <span class="method-icon">📱</span>
-              <span class="method-name">UPI</span>
-              <span class="method-desc">Google Pay, PhonePe, Paytm</span>
-            </a>
-            <a href="contact.html" class="pay-method-card">
-              <span class="method-icon">💳</span>
-              <span class="method-name">Card</span>
-              <span class="method-desc">Credit / Debit Card</span>
-            </a>
-            <a href="contact.html" class="pay-method-card">
-              <span class="method-icon">🏦</span>
-              <span class="method-name">Bank Transfer</span>
-              <span class="method-desc">NEFT / IMPS / RTGS</span>
-            </a>
           </div>
         </div>
 
         <div class="pay-amount-box">
           <div class="pay-amount-row">
-            <span>Amount (USD)</span>
+            <span>Course Fee</span>
             <span class="pay-usd" id="payUsd">$299.00</span>
           </div>
           <div class="pay-amount-row">
-            <span>Exchange Rate</span>
-            <span class="pay-rate" id="payRate">1 BTC = $64,583</span>
+            <span>GST (18%)</span>
+            <span class="pay-rate" id="payRate">Included</span>
           </div>
           <div class="pay-amount-row highlight">
-            <span>You Pay</span>
-            <span class="pay-crypto-amount" id="payCryptoAmount">0.00463 BTC</span>
+            <span>Total Amount</span>
+            <span class="pay-crypto-amount" id="payCryptoAmount">$299.00</span>
           </div>
-        </div>
-
-        <div class="pay-wallet-section">
-          <label>Send to Wallet Address</label>
-          <div class="pay-wallet-address">
-            <code id="payWalletAddr">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</code>
-            <button class="pay-copy-btn" id="payCopyBtn" title="Copy address">📋</button>
-          </div>
-          <p class="pay-wallet-note">⚠️ Only send <strong id="payCoinLabel">BTC</strong> to this address. Sending other coins may result in permanent loss.</p>
         </div>
 
         <div class="pay-security-badges">
-          <span>🔒 256-bit Encryption</span>
-          <span>⛓️ On-Chain Verified</span>
-          <span>🛡️ Immutable Record</span>
+          <span>🔒 256-bit SSL Encryption</span>
+          <span>🛡️ PCI DSS Compliant</span>
+          <span>✅ 100% Secure</span>
         </div>
 
-        <button class="btn btn-primary pay-confirm-btn" id="payConfirmBtn">I've Sent the Payment →</button>
+        <button class="btn btn-primary pay-confirm-btn" id="payConfirmBtn">Proceed to Pay →</button>
+        <p style="text-align:center; margin-top:12px; font-size:12px; color:var(--text-muted);">You will be redirected to our secure payment partner</p>
       </div>
 
       <!-- Step 2: Blockchain Confirmation -->
