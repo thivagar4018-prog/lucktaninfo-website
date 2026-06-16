@@ -3654,67 +3654,79 @@ textarea.form-control {
   }
 
   .nav-actions .btn {
-    padding: 10px 18px;
-    font-size: 13px;
+    padding: 8px 14px;
+    font-size: 11px;
+    white-space: nowrap;
   }
   
   .crypto-ticker {
     display: none;
   }
 
-  /* ─── Hero Section — Viewport Fit ─── */
+  /* ─── Hero Section — Mobile Viewport Fit ─── */
   .hero {
-    padding: 10px 0 14px;
-    min-height: calc(100dvh - 64px);
-    display: flex;
-    align-items: center;
+    padding: 20px 0 30px;
+    min-height: auto;
+    display: block;
   }
 
   .hero .container {
-    gap: 10px;
+    gap: 16px;
     width: 100%;
   }
 
-  /* Avatar on top, title below on mobile */
+  /* Stack vertically: graphic on top, content below */
   .hero-top-row {
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
     align-items: center;
     text-align: center;
   }
 
-  .hero-graphic {
-    order: -1;
-  }
-
-  .hero-content {
-    flex: 1;
+  .hero-top-row .hero-content {
+    flex: none;
+    width: 100%;
     min-width: 0;
   }
 
+  .hero-top-row .hero-graphic {
+    flex: none;
+    order: -1;
+    width: 100%;
+    align-items: center;
+  }
+
+  .hero-graphic {
+    gap: 10px;
+    width: 100%;
+    flex-shrink: 0;
+  }
+
   .hero-content .badge {
-    font-size: 7px;
-    padding: 3px 8px;
-    margin-bottom: 4px;
+    font-size: 9px;
+    padding: 4px 12px;
+    margin-bottom: 8px;
   }
 
   .hero-bottom-row {
     max-width: 100%;
+    text-align: center;
   }
 
   .hero-checklist {
-    margin-bottom: 10px;
-    gap: 4px;
+    margin-bottom: 14px;
+    gap: 6px;
+    align-items: center;
   }
 
   .page-hero {
     padding: 70px 0 30px;
   }
-  
+
   .page-title {
     font-size: 24px;
   }
-  
+
   .hero-content h1 {
     font-size: 20px;
     margin-bottom: 0;
@@ -3726,40 +3738,44 @@ textarea.form-control {
   }
 
   .hero-content p {
-    font-size: 12px;
-    margin-bottom: 10px;
+    font-size: 13px;
+    margin-bottom: 14px;
+    max-width: 100%;
   }
 
+  /* Cycling title — mobile */
   .hero-title-stacked {
-    font-size: 36px !important;
-    letter-spacing: -0.3px;
-    margin-bottom: 0 !important;
-    line-height: 1.2 !important;
+    font-size: 48px !important;
+    letter-spacing: -1px;
+    margin-bottom: 10px !important;
+    line-height: 1.1 !important;
+    text-align: center;
   }
 
   .hero-cycle-container {
-    height: 85px;
+    height: 115px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-pair {
+    align-items: center;
   }
 
   .hero-checklist li {
-    font-size: 11px;
+    font-size: 12px;
     gap: 6px;
   }
 
   .hero-checklist li::before {
-    font-size: 12px;
+    font-size: 13px;
   }
 
-  .hero-graphic {
-    gap: 6px;
-    width: auto;
-    flex-shrink: 0;
-  }
-
+  /* Avatar smaller on mobile */
   .hero-avatar-wrapper {
-    width: 90px;
-    height: 90px;
-    padding: 4px;
+    width: 80px;
+    height: 80px;
+    padding: 3px;
   }
 
   .hero-avatar-wrapper::before {
@@ -3773,18 +3789,20 @@ textarea.form-control {
     border-width: 2px;
   }
 
-  /* Cards row — side by side, ultra compact */
+  /* Cards row — side by side, compact */
   .hero-cards-row {
     flex-direction: row;
     max-width: 100%;
     width: 100%;
-    gap: 6px;
+    gap: 8px;
+    justify-content: center;
   }
 
   .hero-stat-card-inline {
     width: auto;
     flex: 1;
-    padding: 6px 8px;
+    max-width: 160px;
+    padding: 8px 10px;
     font-size: 10px;
   }
 
@@ -3810,13 +3828,20 @@ textarea.form-control {
   }
 
   .hero-actions {
-    gap: 8px;
+    gap: 10px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   .hero-actions .btn {
-    padding: 10px 18px;
-    font-size: 12px;
-    min-height: 40px;
+    padding: 12px 24px;
+    font-size: 14px;
+    min-height: 44px;
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+    justify-content: center;
   }
 
   /* ─── Section Headers ─── */
